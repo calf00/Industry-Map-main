@@ -78,7 +78,7 @@ export function renderOverview(root, ctx) {
     jp: sector.companies.filter((c) => c.region === 'jp').length,
     ov: sector.companies.filter((c) => c.region === 'overseas').length,
   };
-  const noteItems = [...sector.notes, `掲載：国内 ${counts.jp}社・海外 ${counts.ov}社（いま表示中 ${visible.length}社）`];
+  const noteItems = sector.supplyChain ? sector.notes : [...sector.notes, `掲載：国内 ${counts.jp}社・海外 ${counts.ov}社（いま表示中 ${visible.length}社）`];
   parts.push(`<section class="card"><h2>メモ</h2><ul class="notes">${noteItems.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>${
     sector.updated ? `<p class="updated" style="margin-top:10px">データ更新：${esc(sector.updated)}</p>` : ''
   }</section>`);

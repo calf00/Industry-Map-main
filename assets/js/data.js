@@ -233,6 +233,7 @@ export function normalizeSector(raw, meta) {
     category: raw.category || meta.category,
     updated: raw.updated || '',
     summary: raw.summary || '',
+    supplyChain: raw.supplyChain && Array.isArray(raw.supplyChain.lanes) ? raw.supplyChain : null,
     focusWorld: raw.focus === 'world', // 海外が中心の業界（「日本」表示のときに「世界」への切り替えを案内する）
     market,
     metrics,

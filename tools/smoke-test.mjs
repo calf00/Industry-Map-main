@@ -30,7 +30,8 @@ mkdirSync(OUT, { recursive: true });
 const errors = [];
 const fail = (msg) => errors.push('FAIL: ' + msg);
 
-const browser = await chromium.launch();
+// 環境に Playwright 付属の Chromium がない場合は、既存ブラウザを指定できる。
+const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || undefined });
 
 async function run(label, contextOptions) {
   const ctx = await browser.newContext({ ...contextOptions, locale: 'ja-JP' });

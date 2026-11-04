@@ -179,6 +179,7 @@ p { margin: 0; }
 .hero-world-btn:hover { background: var(--navy-600); }
 .hero-cat { font-size: 12px; color: var(--text-sub); font-weight: 600; letter-spacing: .06em; }
 .hero h1 { font-size: 22px; letter-spacing: .02em; }
+.hero-supply h1 { font-size: 19px; }
 .hero-summary {
   margin-top: 10px; font-size: 14px; color: var(--navy-700);
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
@@ -807,3 +808,38 @@ body.sheet-open .main { padding-bottom: calc(var(--sheet-space, 58dvh) + 16px); 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* アイカツ：根拠を添えてたどるサプライチェーン */
+.sc { display: grid; gap: 16px; padding-bottom: 30px; }
+.sc-intro { padding: 24px; border: 1px solid var(--pink-200); border-radius: var(--radius-lg); background: linear-gradient(135deg, var(--white), var(--pink-100)); box-shadow: var(--shadow); }
+.sc-kicker { color: var(--pink-600); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+.sc-intro h2 { margin: 10px 0; color: var(--navy-800); font-size: clamp(23px, 5vw, 32px); line-height: 1.35; }
+.sc-intro > p:not(.sc-kicker) { max-width: 680px; font-size: 13px; line-height: 1.8; }
+.sc-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 18px 0 10px; }
+.sc-status { display: inline-block; border-radius: 999px; padding: 3px 9px; font-size: 11px; font-weight: 700; line-height: 1.5; background: var(--gray-100); color: var(--gray-600); }
+.sc-status.is-confirmed { background: var(--pink-100); color: var(--pink-600); }
+.sc-status.is-department { background: var(--navy-100); color: var(--navy-700); }
+.sc-intro .sc-caution { color: var(--gray-600); font-size: 12px !important; }
+.sc-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+.sc-nav button { display: inline-block; padding: 8px 12px; border: 1px solid var(--navy-100); border-radius: 999px; background: var(--white); color: var(--navy-700); font-size: 12px; font-weight: 700; cursor: pointer; }
+.sc-nav button:hover { background: var(--navy-50); }
+.sc-lanes { display: grid; gap: 16px; }
+.sc-lane { min-width: 0; padding: 20px; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow); scroll-margin-top: calc(var(--appbar-h) + var(--tabs-h) + 12px); }
+.sc-lane-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
+.sc-lane-index { color: var(--pink-500); font-size: 13px; font-weight: 800; letter-spacing: .08em; }
+.sc-lane-head h2 { font-size: 18px; }
+.sc-lane-head p { margin-top: 4px; color: var(--gray-600); font-size: 12px; }
+.sc-steps { list-style: none; display: grid; gap: 22px; margin: 0; padding: 0; }
+.sc-step { position: relative; display: flex; gap: 12px; min-width: 0; }
+.sc-step:not(:last-child)::after { content: '↓'; position: absolute; top: calc(100% + 2px); left: 8px; color: var(--pink-400); font-weight: 700; line-height: 18px; }
+.sc-no-arrows .sc-step:not(:last-child)::after { content: ''; }
+.sc-step-number { flex: 0 0 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--navy-50); color: var(--navy-600); font-size: 10px; font-weight: 800; }
+.sc-step-body { min-width: 0; flex: 1; padding: 14px; border: 1px solid var(--gray-200); border-radius: var(--radius-sm); background: var(--gray-50); }
+.sc-step-body h3 { margin: 7px 0 5px; font-size: 15px; }
+.sc-step-body p { font-size: 13px; line-height: 1.8; overflow-wrap: anywhere; }
+.sc-step-body .sc-detail { margin-top: 8px; color: var(--gray-600); font-size: 12px; }
+.sc-sources { display: flex; flex-wrap: wrap; gap: 5px 12px; margin-top: 10px; }
+.sc-sources a { color: var(--navy-600); font-size: 11px; overflow-wrap: anywhere; }
+.sc-end { color: var(--gray-600); font-size: 12px; }
+@media (min-width: 900px) { .sc-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sc-lanes .sc-lane:first-child { grid-column: 1 / -1; } .sc-lanes .sc-lane:first-child .sc-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } .sc-lanes .sc-lane:first-child .sc-step:not(:last-child)::after { content: '→'; top: 7px; left: auto; right: -18px; } }
+@media (max-width: 420px) { .sc-intro, .sc-lane { padding: 17px; } .sc-step { gap: 8px; } .sc-step-body { padding: 12px; } }

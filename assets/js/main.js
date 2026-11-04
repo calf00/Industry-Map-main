@@ -6,13 +6,14 @@ import { renderMap, applyMapSelection, drawLines } from './views/map.js';
 import { renderRanking } from './views/ranking.js';
 import { renderOverview } from './views/overview.js';
 import { renderNetwork, focusNetworkNode } from './views/network.js';
+import { renderSupplyChain } from './views/supply-chain.js';
 import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js';
 import { initDrawer, closeDrawer, isDrawerOpen } from './drawer.js';
 
 // when：その業界にデータがあるときだけ出すタブ
 const VIEWS = [
   { id: 'map', label: 'マップ' },
-  { id: 'rank', label: 'ランキング' },
+  { id: 'rank', label: 'ランキング', when: (s) => !s.supplyChain },
   { id: 'info', label: '概要' },
   { id: 'net', label: 'つながり', when: (s) => !!s.network },
 ];
@@ -172,11 +173,13 @@ function renderTabs(activeId = state.sectorId) {
 
 function renderHero() {
   const s = state.sector;
+  els.hero.classList.toggle('hero-supply', !!s.supplyChain);
   const visible = visibleCompanies(s, state.region);
   const stats = [];
   if (s.market.jp) stats.push(statHtml(s.market.jp, false));
   if (s.market.global && state.region === 'world') stats.push(statHtml(s.market.global, true));
-  stats.push(`<div class="stat"><span class="stat-k">掲載</span><span class="stat-v">${visible.length}社</span><span class="stat-s">${state.region === 'world' ? '日本＋海外' : '日本のみ'}</span></div>`);
+  if (s.supplyChain) stats.push(`<div class="stat"><span class="stat-k">調査日</span><span class="stat-v">${esc(s.updated)}</span><span class="stat-s">公開情報をもとに調査</span></div>`);
+  else stats.push(`<div class="stat"><span class="stat-k">掲載</span><span class="stat-v">${visible.length}社</span><span class="stat-s">${state.region === 'world' ? '日本＋海外' : '日本のみ'}</span></div>`);
 
   els.hero.innerHTML = `
     <div class="hero-top">
@@ -206,7 +209,7 @@ function statHtml(m, world) {
 
 function renderViewSwitch() {
   els.viewSwitch.innerHTML = VIEWS.filter((v) => viewAvailable(v.id, state.sector)).map(
-    (v) => `<button type="button" class="seg-btn" role="tab" data-view="${v.id}" aria-selected="${v.id === state.view}">${v.label}</button>`,
+    (v) => `<button type="button" class="seg-btn" role="tab" data-view="${v.id}" aria-selected="${v.id === state.view}">${v.id === 'map' && state.sector.supplyChain ? 'サプライチェーン' : v.label}</button>`,
   ).join('');
 }
 
@@ -250,7 +253,8 @@ function viewContext() {
 
 function renderView() {
   const ctx = viewContext();
-  if (state.view === 'map') renderMap(els.view, ctx);
+  if (state.view === 'map' && state.sector.supplyChain) renderSupplyChain(els.view, ctx);
+  else if (state.view === 'map') renderMap(els.view, ctx);
   else if (state.view === 'rank') renderRanking(els.view, ctx);
   else if (state.view === 'net') renderNetwork(els.view, ctx);
   else renderOverview(els.view, ctx);
@@ -266,7 +270,7 @@ function syncSelection() {
   } else {
     closeSheet();
   }
-  if (state.view === 'map') {
+  if (state.view === 'map' && !s.supplyChain) {
     // シートの開閉で横幅が変わるので、レイアウト確定後に線を引き直す
     requestAnimationFrame(() => {
       applyMapSelection(els.view, s, state.companyId, state.showLines, state.tagFilter[s.id] || '');
@@ -392,7 +396,7 @@ async function boot() {
     const b = e.target.closest('[data-sector]');
     if (b && (b.dataset.sector !== state.sectorId || !state.sector)) {
       sheetPushed = false;
-      navigate({ sectorId: b.dataset.sector, companyId: null });
+      navigate({ sectorId: b.dataset.sector, ...(b.dataset.sector === 'aikatsu' ? { view: 'map' } : {}), companyId: null });
     }
   });
   els.viewSwitch.addEventListener('click', (e) => {
@@ -413,7 +417,7 @@ async function boot() {
     getState: () => state,
     onSector: (id) => {
       sheetPushed = false;
-      navigate({ sectorId: id, companyId: null });
+      navigate({ sectorId: id, ...(id === 'aikatsu' ? { view: 'map' } : {}), companyId: null });
     },
     onCompany: (sid, cid) => {
       sheetPushed = false;
