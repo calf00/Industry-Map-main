@@ -29,16 +29,23 @@ export function renderSupplyChain(root, { sector }) {
       <p class="sc-kicker">AIKATSU! ENCORE / SUPPLY CHAIN</p>
       <h2>カードと筐体は、<br>どうやって届く？</h2>
       <p>企画から製造、店舗、プレイヤーへ。公表された情報を手がかりに、モノと判断の流れを追いました。</p>
-      <div class="sc-legend"><span class="sc-status is-confirmed">本作で確認</span><span class="sc-status is-department">部門の一般業務</span><span class="sc-status is-other">一般例・仮説・過去事例</span></div>
+      <div class="sc-legend"><span class="sc-status is-confirmed">本作で確認</span><span class="sc-status is-department">部門の一般業務・会社の実績</span><span class="sc-status is-other">一般例・候補・仮説・過去事例</span></div>
       <p class="sc-caution">矢印は工程の見取り図です。実際の取引先や経路が確認できていない部分を含みます。</p>
     </section>
     <nav class="sc-nav" aria-label="調べたい項目へ移動">
-      <button type="button" data-jump="sc-card">カードの流れ ↓</button><button type="button" data-jump="sc-machine">筐体の流れ ↓</button><button type="button" data-jump="sc-decisions">生産の判断 ↓</button><button type="button" data-jump="sc-past">過去の事例 ↓</button>
+      <button type="button" data-jump="sc-card">カードの流れ ↓</button><button type="button" data-jump="sc-candidates">会社の候補 ↓</button><button type="button" data-jump="sc-machine">筐体の流れ ↓</button><button type="button" data-jump="sc-decisions">生産の判断 ↓</button><button type="button" data-jump="sc-past">過去の事例 ↓</button>
     </nav>
     <div class="sc-lanes">${sc.lanes.map((lane, i) => `<section class="sc-lane" id="${['sc-plan', 'sc-card', 'sc-machine'][i]}">
       <div class="sc-lane-head"><span class="sc-lane-index">0${i + 1}</span><div><h2>${esc(lane.title)}</h2><p>${esc(lane.lead)}</p></div></div>
       <ol class="sc-steps">${lane.steps.map((s, j) => stepHtml(s, String(j + 1).padStart(2, '0'))).join('')}</ol>
     </section>`).join('')}</div>
+    ${sc.candidates ? `<section class="sc-lane sc-investigation" id="sc-candidates">
+      <div class="sc-lane-head"><span class="sc-lane-index">調査</span><div><h2>${esc(sc.candidates.title)}</h2><p>${esc(sc.candidates.lead)}</p></div></div>
+      <div class="sc-candidate-intro"><b>${esc(sc.candidates.conclusion)}</b><p>${esc(sc.candidates.caution)}</p></div>
+      <h3 class="sc-connection-heading">公開資料でたどれる関係</h3>
+      <div class="sc-connections">${sc.candidates.connections.map((link) => `<article class="sc-connection"><div class="sc-connection-pair"><b>${esc(link.from)}</b><span aria-hidden="true">↔</span><b>${esc(link.to)}</b></div><span class="sc-status is-department">${esc(link.kind)}</span><p>${esc(link.text)}</p><div class="sc-sources" aria-label="出典">${sourceLinks(link.sources)}</div></article>`).join('')}</div>
+      <div class="sc-candidate-grid">${sc.candidates.groups.map((group) => `<section class="sc-candidate-group"><h3>${esc(group.title)}</h3><p>${esc(group.description)}</p><div class="sc-candidate-list">${group.items.map((item) => `<article class="sc-candidate"><span class="sc-status is-department">${esc(item.label)}</span><h4>${esc(item.name)}</h4><p>${esc(item.evidence)}</p><p class="sc-candidate-inference"><b>アンコールとの関係：</b>${esc(item.inference)}</p><div class="sc-sources" aria-label="出典">${sourceLinks(item.sources)}</div></article>`).join('')}</div></section>`).join('')}</div>
+    </section>` : ''}
     <section class="sc-lane" id="sc-decisions">
       <div class="sc-lane-head"><span class="sc-lane-index">04</span><div><h2>生産や追加は、どう決まる？</h2><p>公表された判断と、そこから考えられること</p></div></div>
       <ul class="sc-steps sc-no-arrows">${sc.decisions.map((s, j) => stepHtml(s, String(j + 1).padStart(2, '0'))).join('')}</ul>

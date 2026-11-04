@@ -96,48 +96,104 @@
       },
       {
         "title": "カードが届くまで",
-        "lead": "実際の取引先がわからない部分は、工程の一般例として表示",
+        "lead": "本作のカードを手がかりに、一般的な工場の工程を詳しくたどる",
         "steps": [
           {
-            "title": "デザイン・カード仕様",
+            "title": "仕様と発注を決める",
             "status": "本作で確認",
-            "text": "カードサイズは縦86mm×横59mm。1弾の商品として販売され、ゲームやカード購入で手に入る。誰が絵柄や加工仕様を最終決定したかは公表資料では不明。",
+            "text": "アンコールのカードは縦86mm×横59mmで、ドレスなどを表し、裏面の二次元コードは連動アイテムに使う。紙や加工、作る枚数を誰がどう決めたかは不明。",
             "detail": "",
             "sources": [
               {
-                "title": "バンダイ：2026年10月8日 稼働開始",
+                "title": "バンダイ：アンコール稼働開始の発表",
                 "url": "https://prtimes.jp/main/html/rd/p/000000208.000035829.html"
               },
               {
-                "title": "公式：よくあるご質問",
-                "url": "https://dcd.aikatsu.com/encore/faq/"
+                "title": "アイカツ公式：カードの見方",
+                "url": "https://dcd.aikatsu.com/encore/game/card.php"
               }
             ]
           },
           {
-            "title": "材料 → 印刷・加工 → 検査",
+            "title": "紙や加工用の素材を用意",
             "status": "一般的な工程例",
-            "text": "カード印刷企業は印刷・加工などを手がける。バンダイの品質管理職も印刷会社等との仕様確認・検査を担う。ただし、アンコールの用紙・箔・印刷会社、工場、加工方法は未特定。",
-            "detail": "ナガノは印刷工程の参考企業であり、アンコールの取引先だと確認されたわけではありません。",
+            "text": "厚手のカード紙やコート紙、表面のツヤや光を出す材料などを仕様に合わせて選ぶことが考えられる。たとえば北越コーポレーションはトレカ用途の紙、トーツヤ・エコーはホログラム加工を扱う。",
+            "detail": "素材が同じ会社から届くとは限らず、両社が本作に供給したという証拠はない。",
             "sources": [
               {
-                "title": "ナガノ：カード印刷・加工の事業例",
-                "url": "https://www.nagano-printing.co.jp/products/card.html"
+                "title": "ホクト印刷：カード紙・加工の例",
+                "url": "https://www.hokutoinsatsu.co.jp/service/trading-card.html"
               },
               {
-                "title": "バンダイ：カード事業部 品質管理の仕事",
-                "url": "https://js03.jposting.net/bandai/u/job.phtml?job_code=116"
+                "title": "北越コーポレーション：統合報告書2025 PDF 8ページ",
+                "url": "https://www.hokuetsucorp.com/pdf/cr/cr2025_jp.pdf#page=8"
+              },
+              {
+                "title": "トーツヤ・エコー：ホログラム加工",
+                "url": "https://www.totsuya-echo.jp/service/hologram.html"
               }
             ]
           },
           {
-            "title": "出荷 → 店舗への補充",
-            "status": "本作で確認",
-            "text": "公式は一部店舗でカード切れが起き、追加出荷・増産を進めていると発表。物流会社・倉庫・店舗への配送経路・配分基準は不明。",
+            "title": "絵柄を製版し、まとめて印刷",
+            "status": "一般的な工程例",
+            "text": "大きな紙に複数枚の絵柄を並べ、印刷用の版をつくって刷る方法がある。アートプレストの柏-BASEには、カードをオフセット印刷する仕事がある。アンコールの印刷方式や生産場所は未確認。",
             "detail": "",
             "sources": [
               {
-                "title": "公式：2026年10月9日 カード在庫のお知らせ",
+                "title": "アートプレスト：柏-BASEの印刷職求人",
+                "url": "https://doda.jp/DodaFront/View/JobSearchDetail/j_jid__3015987170/"
+              },
+              {
+                "title": "エス・ワイ・エス：トレカ印刷と加工",
+                "url": "https://www.sys-inc.jp/product/trading-card/"
+              }
+            ]
+          },
+          {
+            "title": "キラキラ加工・切り抜き",
+            "status": "一般的な工程例",
+            "text": "箔押し、ホログラム、ニスやフィルムなどで見た目や手触りを変え、カードの形に切り抜く方法がある。どの加工をどの順番で使うかは仕様によって変わる。",
+            "detail": "アンコールの各レアリティに、ここで挙げた特定の加工が使われたとは確認できていない。",
+            "sources": [
+              {
+                "title": "アートプレスト：カード印刷・特殊加工",
+                "url": "https://www.artpresto.co.jp/business/category.php"
+              },
+              {
+                "title": "エス・ワイ・エス：トレカ印刷と加工",
+                "url": "https://www.sys-inc.jp/product/trading-card/"
+              },
+              {
+                "title": "ホクト印刷：カード紙・加工の例",
+                "url": "https://www.hokutoinsatsu.co.jp/service/trading-card.html"
+              }
+            ]
+          },
+          {
+            "title": "検査し、組み合わせて梱包",
+            "status": "部門の一般業務",
+            "text": "バンダイの品質管理職は印刷会社などと仕様確認・商品検査を行う。グループ資料によれば、アートプレストは2022年当時、各セクションで1時間ごとの抜き取り検査や初期ロットの丁合検査を行っていた。",
+            "detail": "絵柄や枚数をそろえる「丁合」の方法、検査頻度や内容がアンコールでも同じかは不明。",
+            "sources": [
+              {
+                "title": "バンダイ：カード事業部の品質管理",
+                "url": "https://js03.jposting.net/bandai/u/job.phtml?job_code=116"
+              },
+              {
+                "title": "バンダイナムコ：2022年の品質管理例・PDF 21ページ",
+                "url": "https://www.bandainamco.co.jp/files/sustainability/database/pdf/2022_sustainability.pdf#page=21"
+              }
+            ]
+          },
+          {
+            "title": "出荷・店舗への供給",
+            "status": "本作で確認",
+            "text": "公式は2026年10月、一部店舗でカードが切れて遊べない状況を説明し、追加出荷と増産を進めると発表した。物流会社や店舗ごとの配分方法は未確認。",
+            "detail": "",
+            "sources": [
+              {
+                "title": "アイカツ公式：1弾カードの在庫状況",
                 "url": "https://dcd.aikatsu.com/encore/news/009.php"
               }
             ]
@@ -145,20 +201,12 @@
           {
             "title": "筐体からプレイヤーへ",
             "status": "本作で確認",
-            "text": "100円でゲームが始まり、カードを1枚受け取る。カードだけの購入もできる。実際に店舗では購入枚数などの案内が出されている。",
+            "text": "100円を入れてゲームを始めるとカードを1枚受け取れる。カードだけを購入するモードもある。",
             "detail": "",
             "sources": [
               {
-                "title": "公式：あそびかた",
+                "title": "アイカツ公式：あそびかた",
                 "url": "https://dcd.aikatsu.com/encore/game/"
-              },
-              {
-                "title": "公式：よくあるご質問",
-                "url": "https://dcd.aikatsu.com/encore/faq/"
-              },
-              {
-                "title": "namcoラゾーナ川崎店：待機列・カード案内",
-                "url": "https://bandainamco-am.co.jp/game_center/loc/kawasaki/NEWS/aikatsu-encore_Qline.html"
               }
             ]
           }
@@ -301,7 +349,157 @@
           }
         ]
       }
-    ]
+    ],
+    "candidates": {
+      "title": "どこの会社・工場が関わりそう？",
+      "lead": "カード印刷の周辺企業を、実際に見つかった関係からたどる",
+      "conclusion": "いちばん注目したい候補は、バンダイナムコグループのアートプレスト。",
+      "caution": "同じグループでカードを手がけ、バンダイとの取引も公表しているため候補に挙げた。ただしアンコールの受託を確認したわけではなく、ほかの会社が担当する可能性もある。候補の強さを数値化できる材料はない。",
+      "connections": [
+        {
+          "from": "バンダイ",
+          "to": "アートプレスト",
+          "kind": "販売先・グループ関係",
+          "text": "同社はバンダイを主要販売先に挙げる。求人では、バンダイなどから依頼されたトレカを柏の自社工場で製造すると説明。商品名は記載されていない。",
+          "sources": [
+            {
+              "title": "アートプレスト：会社概要・主要販売先",
+              "url": "https://www.artpresto.co.jp/company/"
+            },
+            {
+              "title": "アートプレスト：柏-BASEの印刷職求人",
+              "url": "https://doda.jp/DodaFront/View/JobSearchDetail/j_jid__3015987170/"
+            }
+          ]
+        },
+        {
+          "from": "アートプレスト",
+          "to": "エス・ワイ・エス",
+          "kind": "2024年時点の取引先",
+          "text": "三光産業の2024年開示は、トレカ印刷を手がけるエス・ワイ・エスの主要取引先としてアートプレストを掲載。取引した品目・方向や、現在の取引は不明。",
+          "sources": [
+            {
+              "title": "三光産業：エス・ワイ・エスの主要取引先・2024年 PDF 7ページ",
+              "url": "https://www2.jpx.co.jp/disc/79220/140120240122517299.pdf#page=7"
+            }
+          ]
+        },
+        {
+          "from": "バンダイ",
+          "to": "TOPPAN",
+          "kind": "別件での協業",
+          "text": "「ONE PIECEカードゲーム」の開封済みパックを回収し、ケースに再生するプロジェクトで協業。これはカード本体の印刷受託を示すものではない。",
+          "sources": [
+            {
+              "title": "TOPPAN：バンダイとカード包装の再資源化",
+              "url": "https://www.toppan.com/en/tradingcard/information/column-1/"
+            }
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "title": "印刷・加工の候補",
+          "description": "実績や事業内容から関連性を調べる。アンコールの製造委託先は未確認。",
+          "items": [
+            {
+              "name": "アートプレスト／柏-BASE（千葉県柏市）",
+              "label": "有力な調査候補",
+              "evidence": "バンダイナムコグループのカード・シール印刷会社。本人の求人は、バンダイなどから依頼されるカードのオフセット印刷を柏-BASEで行うと説明。2025年9月稼働の工場はトレカの生産工程を自社で完結できるという。",
+              "inference": "グループ内のカード工場という理由で候補に挙げたが、アンコールを生産したか、他社と分担したかは不明。",
+              "sources": [
+                {
+                  "title": "アートプレスト：会社概要・主要販売先",
+                  "url": "https://www.artpresto.co.jp/company/"
+                },
+                {
+                  "title": "アートプレスト：柏-BASEとカード生産",
+                  "url": "https://note.com/ap_kouhou/n/nc7303feb2ed6"
+                },
+                {
+                  "title": "アートプレスト：柏-BASEの印刷職求人",
+                  "url": "https://doda.jp/DodaFront/View/JobSearchDetail/j_jid__3015987170/"
+                }
+              ]
+            },
+            {
+              "name": "エス・ワイ・エス",
+              "label": "関連先の候補",
+              "evidence": "トレカの印刷、箔・ホログラムなどの加工、包装まで手がける。2024年の開示資料にアートプレストが主要取引先として載る。",
+              "inference": "アートプレストとの関係は資料で確認できるが、本作の印刷や加工を請け負った証拠はない。",
+              "sources": [
+                {
+                  "title": "三光産業：エス・ワイ・エスの主要取引先・2024年 PDF 7ページ",
+                  "url": "https://www2.jpx.co.jp/disc/79220/140120240122517299.pdf#page=7"
+                },
+                {
+                  "title": "エス・ワイ・エス：トレカ印刷と加工",
+                  "url": "https://www.sys-inc.jp/product/trading-card/"
+                }
+              ]
+            },
+            {
+              "name": "TOPPANインフォメディア",
+              "label": "ゲーム機用カードの製造例",
+              "evidence": "ゲーム機連動カードについて、素材の選定から印刷・加工・丁合・梱包まで対応すると公表。TOPPANグループは別にバンダイと包装材リサイクルで協業している。",
+              "inference": "ゲーム機用カードの経験から候補に挙げた。バンダイとの別件協業は、アンコールのカード製造を証明しない。",
+              "sources": [
+                {
+                  "title": "TOPPANインフォメディア：ゲーム機用カード",
+                  "url": "https://www.tim.toppan.com/products/1056.html"
+                },
+                {
+                  "title": "TOPPAN：バンダイとカード包装の再資源化",
+                  "url": "https://www.toppan.com/en/tradingcard/information/column-1/"
+                }
+              ]
+            },
+            {
+              "name": "TOPPAN／川口工場・坂戸工場（埼玉県）",
+              "label": "トレカ工場の参考",
+              "evidence": "TOPPANはトレカ事業の国内製造拠点として川口工場・坂戸工場を掲載している。",
+              "inference": "グループの一般的なトレカ拠点の例。アンコール向けの生産や、上記TOPPANインフォメディアの本作製造拠点と結びつける根拠はない。",
+              "sources": [
+                {
+                  "title": "TOPPAN：トレカ事業と生産拠点",
+                  "url": "https://www.toppan.com/en/tradingcard/"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": "紙・キラキラ素材の参考企業",
+          "description": "こうした材料や加工を扱う企業の例。印刷会社との取引や、本作への採用は確認できていない。",
+          "items": [
+            {
+              "name": "北越コーポレーション",
+              "label": "トレカ用紙の参考",
+              "evidence": "統合報告書にトレーディングカード用途を含む紙製品の説明がある。",
+              "inference": "アンコールの用紙が同社製か、印刷候補の会社に納めているかは不明。",
+              "sources": [
+                {
+                  "title": "北越コーポレーション：統合報告書2025 PDF 8ページ",
+                  "url": "https://www.hokuetsucorp.com/pdf/cr/cr2025_jp.pdf#page=8"
+                }
+              ]
+            },
+            {
+              "name": "トーツヤ・エコー",
+              "label": "ホログラム加工の参考",
+              "evidence": "トレカ向けのホログラム関連製品を扱い、転写やフィルムを貼る加工を説明している。",
+              "inference": "同社が本作のホログラム加工・素材に関わっているという証拠はない。",
+              "sources": [
+                {
+                  "title": "トーツヤ・エコー：ホログラム加工",
+                  "url": "https://www.totsuya-echo.jp/service/hologram.html"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   },
   "insights": [],
   "trends": [],
@@ -324,6 +522,7 @@
     }
   ],
   "notes": [
+    "アイカツのみ、他商品・業界の実績から製造候補や工程の仮説を掲載。候補はアンコールの製造先と確認されたものではありません。",
     "本作のカード印刷会社、紙・箔の仕入先、筐体の製造・組立会社、物流会社、発注・配分の判断基準は、調査した公開情報から特定できていません。",
     "部門一般の求人、他社の印刷工程、過去作の事例は、本作への直接の納入・受託関係を示すものではありません。",
     "カード払い出しは確認できますが、アンコールの印刷方式や筐体内部の詳細は今回の一次資料では確認していません。",
@@ -389,6 +588,66 @@
     {
       "title": "バンダイナムコHD：過去のデータカードダス開発",
       "url": "https://www.bandainamco.co.jp/ir/interview/entry4422.html"
+    },
+    {
+      "title": "アートプレスト：会社概要・主要販売先",
+      "url": "https://www.artpresto.co.jp/company/"
+    },
+    {
+      "title": "アートプレスト：柏-BASEとカード生産",
+      "url": "https://note.com/ap_kouhou/n/nc7303feb2ed6"
+    },
+    {
+      "title": "アートプレスト：柏-BASEの印刷職求人",
+      "url": "https://doda.jp/DodaFront/View/JobSearchDetail/j_jid__3015987170/"
+    },
+    {
+      "title": "アートプレスト：カード印刷・特殊加工",
+      "url": "https://www.artpresto.co.jp/business/category.php"
+    },
+    {
+      "title": "バンダイナムコ：2022年の品質管理例・PDF 21ページ",
+      "url": "https://www.bandainamco.co.jp/files/sustainability/database/pdf/2022_sustainability.pdf#page=21"
+    },
+    {
+      "title": "三光産業：エス・ワイ・エスの主要取引先・2024年 PDF 7ページ",
+      "url": "https://www2.jpx.co.jp/disc/79220/140120240122517299.pdf#page=7"
+    },
+    {
+      "title": "エス・ワイ・エス：トレカ印刷と加工",
+      "url": "https://www.sys-inc.jp/product/trading-card/"
+    },
+    {
+      "title": "TOPPANインフォメディア：ゲーム機用カード",
+      "url": "https://www.tim.toppan.com/products/1056.html"
+    },
+    {
+      "title": "TOPPAN：トレカ事業と生産拠点",
+      "url": "https://www.toppan.com/en/tradingcard/"
+    },
+    {
+      "title": "TOPPAN：バンダイとカード包装の再資源化",
+      "url": "https://www.toppan.com/en/tradingcard/information/column-1/"
+    },
+    {
+      "title": "北越コーポレーション：統合報告書2025 PDF 8ページ",
+      "url": "https://www.hokuetsucorp.com/pdf/cr/cr2025_jp.pdf#page=8"
+    },
+    {
+      "title": "トーツヤ・エコー：ホログラム加工",
+      "url": "https://www.totsuya-echo.jp/service/hologram.html"
+    },
+    {
+      "title": "ホクト印刷：カード紙・加工の例",
+      "url": "https://www.hokutoinsatsu.co.jp/service/trading-card.html"
+    },
+    {
+      "title": "アイカツ公式：カードの見方",
+      "url": "https://dcd.aikatsu.com/encore/game/card.php"
+    },
+    {
+      "title": "バンダイナムコHD：グループのカード生産体制",
+      "url": "https://www.bandainamco.co.jp/ir/interview/entry8513.html"
     }
   ]
 }

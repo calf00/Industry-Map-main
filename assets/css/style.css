@@ -826,7 +826,7 @@ body.sheet-open .main { padding-bottom: calc(var(--sheet-space, 58dvh) + 16px); 
 .sc-lanes { display: grid; gap: 16px; }
 .sc-lane { min-width: 0; padding: 20px; border: 1px solid var(--gray-200); border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow); scroll-margin-top: calc(var(--appbar-h) + var(--tabs-h) + 12px); }
 .sc-lane-head { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; }
-.sc-lane-index { color: var(--pink-500); font-size: 13px; font-weight: 800; letter-spacing: .08em; }
+.sc-lane-index { flex: none; color: var(--pink-500); font-size: 13px; font-weight: 800; letter-spacing: .08em; }
 .sc-lane-head h2 { font-size: 18px; }
 .sc-lane-head p { margin-top: 4px; color: var(--gray-600); font-size: 12px; }
 .sc-steps { list-style: none; display: grid; gap: 22px; margin: 0; padding: 0; }
@@ -841,5 +841,23 @@ body.sheet-open .main { padding-bottom: calc(var(--sheet-space, 58dvh) + 16px); 
 .sc-sources { display: flex; flex-wrap: wrap; gap: 5px 12px; margin-top: 10px; }
 .sc-sources a { color: var(--navy-600); font-size: 11px; overflow-wrap: anywhere; }
 .sc-end { color: var(--gray-600); font-size: 12px; }
+.sc-candidate-intro { margin-bottom: 18px; padding: 15px; border-left: 4px solid var(--pink-400); border-radius: var(--radius-sm); background: var(--pink-50); font-size: 13px; line-height: 1.8; }
+.sc-candidate-intro p { margin-top: 5px; color: var(--gray-600); }
+.sc-connection-heading { margin-bottom: 10px; font-size: 15px; }
+.sc-connections { display: grid; gap: 8px; margin-bottom: 20px; }
+.sc-connection { padding: 12px 14px; border: 1px solid var(--pink-200); border-radius: var(--radius-sm); background: var(--white); }
+.sc-connection-pair { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 7px; font-size: 14px; }
+.sc-connection-pair span { color: var(--pink-500); }
+.sc-connection p { margin-top: 5px; font-size: 12px; line-height: 1.8; }
+.sc-candidate-grid { display: grid; gap: 18px; }
+.sc-candidate-group { min-width: 0; }
+.sc-candidate-group > h3 { font-size: 15px; }
+.sc-candidate-group > p { margin: 4px 0 10px; color: var(--gray-600); font-size: 12px; }
+.sc-candidate-list { display: grid; gap: 10px; }
+.sc-candidate { min-width: 0; padding: 14px; border: 1px solid var(--navy-100); border-radius: var(--radius-sm); background: var(--navy-50); }
+.sc-candidate h4 { margin: 8px 0 6px; font-size: 15px; }
+.sc-candidate p { font-size: 13px; line-height: 1.8; overflow-wrap: anywhere; }
+.sc-candidate .sc-candidate-inference { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--navy-100); }
+@media (min-width: 760px) { .sc-candidate-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 900px) { .sc-lanes { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sc-lanes .sc-lane:first-child { grid-column: 1 / -1; } .sc-lanes .sc-lane:first-child .sc-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } .sc-lanes .sc-lane:first-child .sc-step:not(:last-child)::after { content: '→'; top: 7px; left: auto; right: -18px; } }
 @media (max-width: 420px) { .sc-intro, .sc-lane { padding: 17px; } .sc-step { gap: 8px; } .sc-step-body { padding: 12px; } }
