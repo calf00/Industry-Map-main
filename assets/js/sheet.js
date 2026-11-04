@@ -1,0 +1,238 @@
+// 企業の詳細パネル（スマホ：下から出るシート / PC：右側パネル）
+import { esc, formatValue, isDesktop } from './util.js';
+import { RELATION_TYPES } from './data.js';
+
+const sheet = document.getElementById('sheet');
+let handlers = { onClose: () => {}, onSelect: () => {}, onNetwork: () => {} };
+let lastFocus = null;
+
+export function initSheet(h) {
+  handlers = h;
+  sheet.addEventListener('click', (e) => {
+    if (e.target.closest('[data-close]')) return handlers.onClose();
+    const net = e.target.closest('[data-net]');
+    if (net) return handlers.onNetwork?.(net.dataset.net);
+    const go = e.target.closest('[data-goto]');
+    if (go) handlers.onSelect(go.dataset.goto);
+  });
+  setupDrag();
+}
+
+function safeUrl(u) {
+  return /^https?:\/\//i.test(u || '') ? u : '';
+}
+
+function relationRows(sector, c) {
+  const rows = [];
+  for (const r of sector.relations) {
+    if (r.from !== c.id && r.to !== c.id) continue;
+    const otherId = r.from === c.id ? r.to : r.from;
+    const other = sector.companyMap.get(otherId);
+    if (!other) continue;
+    const t = RELATION_TYPES[r.type];
+    // 自分が from（親・出資元）なら相手は「子会社・出資先」、自分が to なら相手は「親会社・出資元」
+    const role = r.from === c.id ? t.child : t.parent;
+    rows.push({ other, role, rel: r });
+  }
+  return rows;
+}
+
+export function renderSheet(sector, c) {
+  const g = sector.groupMap.get(c.group);
+  const metrics = sector.metrics.filter((m) => typeof c.values[m.key] === 'number');
+  const rels = relationRows(sector, c);
+  const netLinks = sector.network ? sector.network.links.filter((l) => l.a === c.id || l.b === c.id) : [];
+  const netRivals = netLinks.filter((l) => l.rivals).length;
+  const url = safeUrl(c.url);
+  const sub = [c.code && `${c.region === 'overseas' ? 'ティッカー' : '証券コード'} ${c.code}`, c.fy && `${c.fy}`].filter(Boolean).join(' ・ ');
+
+  sheet.innerHTML = `
+    <div class="sheet-grab">
+      <div class="sheet-handle" aria-hidden="true"></div>
+      <div class="sheet-headrow">
+        <div>
+          <div class="sheet-kicker">
+            <span class="grp" style="--g:${g.color}">${esc(g.name)}</span>
+            <span class="tag-ov">${c.region === 'overseas' ? esc(c.country || '海外') : esc(c.country || '日本')}</span>
+          </div>
+          <h2 id="sheetTitle">${esc(c.name)}</h2>
+          ${sub ? `<div class="sheet-sub">${esc(sub)}</div>` : ''}
+        </div>
+        <button type="button" class="icon-btn" data-close aria-label="閉じる">
+          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="sheet-body">
+      ${c.tagline || c.description ? `<p class="desc">${esc(c.description || c.tagline)}</p>` : ''}
+      ${c.tags.length ? `<div class="chips chips-tag">${c.tags.map((t) => `<span class="chip chip-tag">#${esc(t)}</span>`).join('')}</div>` : ''}
+      ${metrics.length ? `<section><h3>数字</h3><div class="metrics">${metrics
+        .map((m) => {
+          const meta = c.valueMeta[m.key] || {};
+          const v = c.values[m.key];
+          const note = [meta.period, meta.note].filter(Boolean).join('・');
+          return `<div class="metric"><div class="k">${esc(m.label)}</div><div class="v${v < 0 ? ' is-neg' : ''}">${esc(formatValue(v, m, meta))}</div>${note ? `<div class="n">${esc(note)}</div>` : ''}</div>`;
+        })
+        .join('')}</div></section>` : ''}
+      ${c.brands.length ? `<section><h3>主なブランド・業態</h3><div class="chips">${c.brands
+        .map((b) => `<span class="chip"${b.note ? ` title="${esc(b.note)}"` : ''}>${esc(b.name)}${b.note ? `<span class="muted">（${esc(b.note)}）</span>` : ''}</span>`)
+        .join('')}</div></section>` : ''}
+      ${c.points.length ? `<section><h3>ポイント</h3><ul class="points">${c.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul></section>` : ''}
+      ${rels.length ? `<section><h3>つながり</h3><ul class="rels">${rels
+        .map(({ other, role, rel }) => `
+          <li><button type="button" class="rel-btn" data-goto="${esc(other.id)}">
+            <span class="rel-type${rel.type === 'alliance' ? ' is-alliance' : ''}">${esc(role)}</span>
+            <span class="rel-main">
+              <span class="rel-name">${esc(other.name)}${other.region === 'overseas' ? ` <span class="tag-ov">${esc(other.country || '海外')}</span>` : ''}</span>
+              ${rel.label || rel.note ? `<span class="rel-label">${esc([rel.label, rel.note].filter(Boolean).join(' / '))}</span>` : ''}
+            </span>
+            <svg class="rel-go" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button></li>`)
+        .join('')}</ul></section>` : ''}
+      ${netLinks.length ? `<section><h3>提携・特許・訴訟</h3>
+        <button type="button" class="net-jump" data-net="${esc(c.id)}">
+          <span class="net-jump-main"><b>つながりマップで見る</b><span>${netLinks.length}本${netRivals ? `（うち表向きは競合どうし ${netRivals}本）` : ''}</span></span>
+          <svg class="rel-go" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button></section>` : ''}
+      ${c.facts.length ? `<section><h3>メモ</h3><table class="facts"><tbody>${c.facts
+        .map((f) => `<tr><th>${esc(f.label)}</th><td>${esc(f.value ?? '')}</td></tr>`)
+        .join('')}</tbody></table></section>` : ''}
+      ${url ? `<p><a class="ext" href="${esc(url)}" target="_blank" rel="noopener">公式サイト <span aria-hidden="true">↗</span></a></p>` : ''}
+    </div>`;
+  sheet.querySelector('.sheet-body').scrollTop = 0;
+  syncSpace();
+}
+
+export function openSheet() {
+  if (!sheet.classList.contains('is-open')) lastFocus = document.activeElement;
+  applyHeight(userH);
+  sheet.classList.add('is-open');
+  sheet.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('sheet-open');
+  // フォーカスを移す（スクロール位置は動かさない）
+  sheet.querySelector('[data-close]')?.focus({ preventScroll: true });
+}
+
+export function closeSheet() {
+  if (!sheet.classList.contains('is-open')) return;
+  sheet.classList.remove('is-open');
+  sheet.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('sheet-open');
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true });
+  lastFocus = null;
+}
+
+/* ---------- スマホ：シートの高さを指で動かす ---------- */
+
+// ユーザーが決めた高さ（px）。null のあいだは内容に合わせて画面の58%まで
+let userH = null;
+
+/** いちばん上まで引き上げたときの高さ（上のバーの下まで） */
+function maxHeight() {
+  const bar = document.querySelector('.appbar');
+  const top = bar ? Math.max(0, bar.getBoundingClientRect().bottom) : 0;
+  return Math.max(220, window.innerHeight - top - 6);
+}
+
+/** いちばん下まで下げたときの高さ（つまみと会社名だけ見える） */
+function minHeight() {
+  const grab = sheet.querySelector('.sheet-grab');
+  return (grab ? grab.offsetHeight : 96) + 4;
+}
+
+function defaultHeight() {
+  return Math.min(Math.round(window.innerHeight * 0.58), maxHeight());
+}
+
+function applyHeight(h) {
+  if (isDesktop() || h == null) {
+    sheet.style.height = '';
+    sheet.style.maxHeight = '';
+  } else {
+    sheet.style.maxHeight = 'none';
+    sheet.style.height = `${Math.round(h)}px`;
+  }
+  // 高さはアニメーション中なので、余白は目標の高さで決める
+  syncSpace(h);
+}
+
+/** シートの裏に隠れた部分までページをスクロールできるよう、下の余白をシートの高さに合わせる */
+function syncSpace(h = isDesktop() ? null : userH) {
+  const px = h != null && !isDesktop() ? Math.round(h) : sheet.offsetHeight;
+  document.documentElement.style.setProperty('--sheet-space', `${px}px`);
+}
+
+/**
+ * つまみ（会社名のあたり）を上下にドラッグすると、離した高さでそのまま止まる。
+ * いちばん下より下まで下げる・素早く下に払うと閉じる。タップすると「いちばん上」と「標準」を切り替え。
+ */
+function setupDrag() {
+  let startY = 0;
+  let startH = 0;
+  let lastY = 0;
+  let lastT = 0;
+  let velocity = 0; // 下向きがプラス（px/ms）
+  let moved = false;
+  let dragging = false;
+
+  sheet.addEventListener('pointerdown', (e) => {
+    if (isDesktop() || !e.target.closest('.sheet-grab') || e.target.closest('button')) return;
+    if (e.pointerType === 'mouse' && e.button !== 0) return;
+    dragging = true;
+    moved = false;
+    startY = lastY = e.clientY;
+    lastT = e.timeStamp;
+    velocity = 0;
+    startH = sheet.offsetHeight;
+    sheet.classList.add('is-dragging');
+    sheet.setPointerCapture(e.pointerId);
+  });
+
+  sheet.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    const dy = e.clientY - startY;
+    if (Math.abs(dy) > 5) moved = true;
+    if (!moved) return;
+    const max = maxHeight();
+    let h = startH - dy;
+    if (h > max) h = max + (h - max) * 0.15; // 上限を超えたら少しだけ伸びる
+    h = Math.max(0, h);
+    sheet.style.maxHeight = 'none';
+    sheet.style.height = `${h}px`;
+    const dt = e.timeStamp - lastT;
+    if (dt > 0) velocity = 0.7 * ((e.clientY - lastY) / dt) + 0.3 * velocity;
+    lastY = e.clientY;
+    lastT = e.timeStamp;
+  });
+
+  const end = () => {
+    if (!dragging) return;
+    dragging = false;
+    sheet.classList.remove('is-dragging');
+    const max = maxHeight();
+    const min = minHeight();
+
+    if (!moved) {
+      // タップ：いちばん上 ⇔ 標準
+      userH = sheet.offsetHeight < max - 40 ? max : defaultHeight();
+      applyHeight(userH);
+      return;
+    }
+    const h = sheet.offsetHeight;
+    const flickDown = velocity > 1.1;
+    if (h < min * 0.7 || (flickDown && h < min * 1.8)) {
+      handlers.onClose();
+      return;
+    }
+    userH = Math.min(Math.max(h, min), max);
+    applyHeight(userH);
+  };
+  sheet.addEventListener('pointerup', end);
+  sheet.addEventListener('pointercancel', end);
+
+  // 画面の回転・サイズ変更：はみ出さないように高さを直す
+  window.addEventListener('resize', () => {
+    if (userH != null && userH > maxHeight()) userH = maxHeight();
+    if (sheet.classList.contains('is-open')) applyHeight(userH);
+  });
+}
