@@ -494,7 +494,7 @@
       "country": "日本",
       "fy": "2024年3月期",
       "tagline": "無添加化粧品とサプリ。2024年にキリン傘下へ",
-      "description": "無添加化粧品と健康食品（サプリメント）が2本柱。2024年9月にキリンHDが完全子会社化し、上場廃止。",
+      "description": "無添加化粧品と健康食品（サプリメント）が2本柱。2024年9月にキリンHDの連結子会社となり、2025年3月に完全子会社化。",
       "metrics": {
         "revenue": {
           "value": 1109,
@@ -817,7 +817,7 @@
       "country": "日本",
       "code": "2503",
       "tagline": "ビール大手。ファンケルの親会社",
-      "description": "酒類・飲料・医薬に加え「ヘルスサイエンス」を第3の柱に育てるため、2024年にファンケルを完全子会社化。",
+      "description": "酒類・飲料・医薬に加え「ヘルスサイエンス」を第3の柱に育てるため、2024年にファンケルを連結子会社化し、2025年に完全子会社化。",
       "tags": [
         "異業種出身"
       ]
@@ -1046,7 +1046,7 @@
       "region": "jp",
       "country": "日本",
       "tagline": "資生堂の旧日用品事業（TSUBAKI・uno）",
-      "description": "2021年に資生堂がパーソナルケア事業を投資ファンドのCVCへ売却して誕生。資生堂も出資。",
+      "description": "2021年に資生堂がパーソナルケア事業を投資ファンドのCVCへ売却して誕生。資生堂は2024年に保有株式をすべて譲渡し、資本関係は解消。",
       "brands": [
         "TSUBAKI",
         "専科",
@@ -1652,7 +1652,7 @@
       "group": "acquired",
       "region": "overseas",
       "country": "米国",
-      "tagline": "花王が2017年に買収",
+      "tagline": "花王が2018年に買収",
       "description": "米国の高級ヘアケアブランド。",
       "tags": [
         "ヘアケア"
@@ -1931,19 +1931,13 @@
       "from": "kirin",
       "to": "fancl",
       "type": "subsidiary",
-      "label": "2024年 完全子会社化"
+      "label": "2025年 完全子会社化"
     },
     {
       "from": "orix",
       "to": "dhc",
       "type": "subsidiary",
       "label": "2023年買収"
-    },
-    {
-      "from": "shiseido",
-      "to": "finetoday",
-      "type": "equity",
-      "label": "2021年 事業譲渡・出資"
     },
     {
       "from": "shiseido",
@@ -1979,7 +1973,7 @@
       "from": "kao",
       "to": "oribe",
       "type": "subsidiary",
-      "label": "2017年買収"
+      "label": "2018年買収"
     },
     {
       "from": "kenvue",
@@ -2067,7 +2061,11 @@
     },
     {
       "date": "2017",
-      "text": "J&Jがドクターシーラボを買収／花王が米オリベを買収"
+      "text": "J&Jがドクターシーラボを買収"
+    },
+    {
+      "date": "2018.1",
+      "text": "花王が米オリベの買収を完了"
     },
     {
       "date": "2019",
@@ -2091,7 +2089,7 @@
     },
     {
       "date": "2024.9",
-      "text": "キリンHDがファンケルを完全子会社化"
+      "text": "キリンHDがファンケルを連結子会社化。2025年3月に完全子会社化"
     },
     {
       "date": "2025.11",
@@ -2287,5 +2285,530 @@
       "conclusion": "「スキンケアは一度信頼を得るとリピートで積み上がる」のは正しい。異業種はその信頼を“技術と効能”“ドラッグストアや通販の販路”で取りにいき、ロートのように成功した例がある。ただし大手もスキンケア中心で、苦戦の理由は中国・免税依存。メイクはトレンド勝負なので入れ替わりが激しい。",
       "tag": "異業種出身"
     }
-  ]
+  ],
+  "network": {
+    "title": "化粧品の会社とブランドのつながり",
+    "lead": "どこがどのブランドを持ち、競合どうしがどんな場面で協力する？ 買収・合弁・共同研究・製品づくりを、発表資料からたどります。",
+    "note": "調査日：2026年11月11日。買収の線には過去に売却した事業も含みます。買収の理由は発表当時の狙いであり、達成した成果とは限りません。企業とブランドを併せて表示しています。",
+    "updated": "2026-11-11",
+    "nodeCountLabel": "社・ブランド",
+    "nodes": [
+      {
+        "id": "kering",
+        "name": "ケリング",
+        "label": "ケリング",
+        "region": "overseas",
+        "country": "フランス",
+        "description": "ファッション・ラグジュアリーグループ。美容事業の譲渡元。"
+      },
+      {
+        "id": "shiseido",
+        "label": "資生堂"
+      },
+      {
+        "id": "kao",
+        "label": "花王"
+      },
+      {
+        "id": "kose",
+        "label": "コーセー"
+      },
+      {
+        "id": "tokiwa",
+        "label": "トキワ"
+      },
+      {
+        "id": "yoshino",
+        "label": "吉野工業所"
+      },
+      {
+        "id": "kirin",
+        "label": "キリン"
+      },
+      {
+        "id": "fancl",
+        "label": "ファンケル"
+      },
+      {
+        "id": "orix",
+        "label": "オリックス"
+      },
+      {
+        "id": "dhc",
+        "label": "DHC"
+      },
+      {
+        "id": "milbon",
+        "label": "ミルボン"
+      },
+      {
+        "id": "albion",
+        "label": "アルビオン"
+      },
+      {
+        "id": "kanebo",
+        "label": "カネボウ"
+      },
+      {
+        "id": "beiersdorf",
+        "label": "バイヤスドルフ"
+      },
+      {
+        "id": "nars",
+        "label": "NARS"
+      },
+      {
+        "id": "drunk_elephant",
+        "label": "Drunk Elephant"
+      },
+      {
+        "id": "tarte",
+        "label": "tarte"
+      },
+      {
+        "id": "oribe",
+        "label": "Oribe"
+      },
+      {
+        "id": "finetoday",
+        "label": "FineToday"
+      },
+      {
+        "id": "loreal",
+        "label": "ロレアル"
+      }
+    ],
+    "zones": [
+      {
+        "label": "化粧品大手",
+        "color": "pink",
+        "ids": [
+          "shiseido",
+          "kao",
+          "kanebo",
+          "beiersdorf",
+          "kose",
+          "albion",
+          "milbon"
+        ]
+      },
+      {
+        "label": "異業種・通販",
+        "color": "lemon",
+        "ids": [
+          "kirin",
+          "fancl",
+          "dhc",
+          "orix",
+          "finetoday"
+        ]
+      },
+      {
+        "label": "ブランドと海外",
+        "color": "navy",
+        "ids": [
+          "nars",
+          "drunk_elephant",
+          "oribe",
+          "tarte",
+          "loreal",
+          "kering"
+        ]
+      },
+      {
+        "label": "つくる・支える",
+        "color": "sage",
+        "ids": [
+          "yoshino",
+          "tokiwa"
+        ]
+      }
+    ],
+    "links": [
+      {
+        "id": "kirin_fancl",
+        "a": "kirin",
+        "b": "fancl",
+        "type": "deal",
+        "date": "2025-03",
+        "title": "キリンがファンケルを完全子会社化",
+        "text": "2024年9月に連結子会社化、2025年3月に完全子会社化。キリンは健康食品や研究、ファンケルの化粧品・健康食品の顧客基盤を組み合わせ、ヘルスサイエンス事業を育てる方針を示した。",
+        "status": "買収完了",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "キリン：2024年の買収方針",
+            "url": "https://www.kirinholdings.com/jp/newsroom/release/2024/0614_01.html"
+          },
+          {
+            "title": "キリン：グループの沿革",
+            "url": "https://www.kirinholdings.com/jp/company/history/2020/"
+          }
+        ]
+      },
+      {
+        "id": "orix_dhc",
+        "a": "orix",
+        "b": "dhc",
+        "type": "deal",
+        "date": "2023-01",
+        "title": "オリックスがDHCを買収",
+        "text": "創業者から株式を譲り受け、事業承継を支援。オリックスはDHCの健康食品や化粧品の事業を成長させることを目指した。",
+        "status": "買収完了",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "オリックス：DHCへの出資と事業承継",
+            "url": "https://www.orix.co.jp/grp/pdf/company/ir/library/annual_report/AR2023J.pdf"
+          },
+          {
+            "title": "オリックス：DHCの成長支援",
+            "url": "https://www.orix.co.jp/grp/move_on/entry/2023/11/15/100000"
+          }
+        ]
+      },
+      {
+        "id": "kose_tarte",
+        "a": "kose",
+        "b": "tarte",
+        "type": "deal",
+        "date": "2014-04",
+        "title": "コーセーが米国のtarteを傘下に",
+        "text": "コーセーは北米市場での事業拡大を狙い、メイクブランドtarteを展開する会社を子会社化。tarteはブランド名であり、線は事業会社の買収を表す。",
+        "status": "買収完了",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "コーセー：タルトの買収",
+            "url": "https://koseholdings.co.jp/ja/media/2016/03/20140317.pdf"
+          },
+          {
+            "title": "コーセー：グループ会社",
+            "url": "https://koseholdings.co.jp/ja/info/bases/"
+          }
+        ]
+      },
+      {
+        "id": "shiseido_nars",
+        "a": "shiseido",
+        "b": "nars",
+        "type": "deal",
+        "date": "2000",
+        "title": "資生堂がNARSブランドを買収",
+        "text": "資生堂は2000年に米国のNARSを取得。NARSは現在も資生堂グループのブランドとして紹介されている。",
+        "status": "ブランド取得",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "資生堂：会社の歴史",
+            "url": "https://corp.shiseido.com/jp/company/history/index.html"
+          },
+          {
+            "title": "資生堂：米州のブランド",
+            "url": "https://corp.shiseido.com/en/americas/"
+          }
+        ]
+      },
+      {
+        "id": "shiseido_drunk",
+        "a": "shiseido",
+        "b": "drunk_elephant",
+        "type": "deal",
+        "date": "2019",
+        "title": "資生堂がDrunk Elephantを買収",
+        "text": "米国発の高価格帯スキンケアブランドを取得。資生堂は当時、スキンケアの成長や米国事業の強化を狙いに挙げた。",
+        "status": "ブランドを展開する企業の買収",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "資生堂：Drunk Elephantの買収発表",
+            "url": "https://corp.shiseido.com/en/news/detail.html?n=00000000002773"
+          },
+          {
+            "title": "資生堂：米州のブランド",
+            "url": "https://corp.shiseido.com/en/americas/"
+          }
+        ]
+      },
+      {
+        "id": "kao_oribe",
+        "a": "kao",
+        "b": "oribe",
+        "type": "deal",
+        "date": "2018-01",
+        "title": "花王が米国のOribeを買収",
+        "text": "花王は2017年に買収を発表し、2018年1月に取得。ヘアサロン向けのブランドと顧客基盤の拡充を目的とした。",
+        "status": "買収完了",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "花王：オリベ買収完了",
+            "url": "https://www.kao.com/content/dam/sites/kao/www-kao-com/jp/ja/corporate/investor-relations/pdf/securities-fy2018-all-01.pdf"
+          }
+        ]
+      },
+      {
+        "id": "kao_kanebo",
+        "a": "kao",
+        "b": "kanebo",
+        "type": "deal",
+        "date": "2006",
+        "title": "花王がカネボウ化粧品を傘下に",
+        "text": "花王は2006年にカネボウ化粧品を子会社化。市場では別のブランドが並んでいても、同じグループという関係がある。",
+        "status": "子会社化",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "花王：会社の歴史",
+            "url": "https://www.kao.com/jp/corporate/history/company-history/"
+          }
+        ]
+      },
+      {
+        "id": "kose_albion",
+        "a": "kose",
+        "b": "albion",
+        "type": "capital",
+        "date": "1956",
+        "title": "コーセーグループのアルビオン",
+        "text": "アルビオンはコーセーが1956年に設立。現在もグループ会社として紹介されている。買収ではなくグループ内で設立された例。",
+        "status": "グループ会社",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "コーセー：グループ会社",
+            "url": "https://koseholdings.co.jp/ja/info/bases/"
+          }
+        ]
+      },
+      {
+        "id": "nivea_jv",
+        "a": "kao",
+        "b": "beiersdorf",
+        "type": "capital",
+        "date": "1971",
+        "title": "花王と独バイヤスドルフがニベア花王を設立",
+        "text": "両社はニベア花王を合弁で設立。「ニベア」というブランドを日本で展開する関係につながる。",
+        "status": "合弁",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "花王：ニベア花王の設立",
+            "url": "https://www.kao.com/jp/corporate/history/company-history/"
+          }
+        ]
+      },
+      {
+        "id": "milbon_kose",
+        "a": "kose",
+        "b": "milbon",
+        "type": "capital",
+        "date": "2017",
+        "title": "コーセーとミルボンが美容室向けに協業",
+        "text": "コーセーのスキンケア・メイクの開発力と、ミルボンの美容室向け販売網や教育を組み合わせる。合弁会社を設立し、インプレアなどを展開。",
+        "status": "合弁・共同開発",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "コーセー：合弁と開発の狙い",
+            "url": "https://koseholdings.co.jp/ja/kose/news/8642/"
+          },
+          {
+            "title": "コーセー：ミルボンとの共同開発",
+            "url": "https://koseholdings.co.jp/ja/kose/news/8160/"
+          }
+        ]
+      },
+      {
+        "id": "shiseido_kao",
+        "a": "shiseido",
+        "b": "kao",
+        "type": "ally",
+        "date": "2016",
+        "title": "競合する大手が安全性評価で共同開発",
+        "text": "資生堂と花王が、皮膚アレルギーの可能性を動物を使わずに評価する方法 h-CLAT を共同開発。2016年にOECDの試験法として採用された。",
+        "status": "研究開発",
+        "rivals": true,
+        "rivalNote": "両社とも化粧品を展開",
+        "source": [
+          {
+            "title": "花王：資生堂との代替試験法",
+            "url": "https://www.kao.com/jp/innovation/research-development/fundamental/safety-science/sensitization-evaluation/"
+          }
+        ]
+      },
+      {
+        "id": "kao_kose",
+        "a": "kao",
+        "b": "kose",
+        "type": "ally",
+        "date": "2025-10",
+        "title": "花王とコーセーが容器を一緒に回収",
+        "text": "イオンリテールを含む3社で、化粧品の使用済みプラスチック容器を回収し、再び容器に生かす取り組みを開始。共同で取り組む対象は容器の資源循環。",
+        "status": "容器リサイクル",
+        "rivals": true,
+        "rivalNote": "両社とも化粧品を展開",
+        "source": [
+          {
+            "title": "コーセー・花王・イオン：容器の共同回収",
+            "url": "https://koseholdings.co.jp/ja/media/2025/09/20250925.pdf"
+          }
+        ]
+      },
+      {
+        "id": "kose_yoshino",
+        "a": "kose",
+        "b": "yoshino",
+        "type": "ally",
+        "date": "2023-09",
+        "title": "コーセー・アルビオン・吉野工業所の容器開発",
+        "text": "3社で、金属製のバネをプラスチックに置き換えた化粧品用ポンプを開発。廃棄後に素材を分けやすくすることを狙う。",
+        "status": "共同開発",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "コーセー：容器ポンプの共同開発",
+            "url": "https://koseholdings.co.jp/ja/kose/news/8247/"
+          }
+        ]
+      },
+      {
+        "id": "shiseido_yoshino",
+        "a": "shiseido",
+        "b": "yoshino",
+        "type": "ally",
+        "date": "2024-06",
+        "title": "資生堂と吉野工業所が容器を開発",
+        "text": "AMCORが中心となって開発した成形技術を吉野工業所が実用化し、資生堂と化粧品容器を共同開発。オイデルミンの容器に採用された。",
+        "status": "共同開発",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "資生堂：吉野工業所との容器開発",
+            "url": "https://corp.shiseido.com/jp/newsimg/3841_v1k83_jp.pdf"
+          }
+        ]
+      },
+      {
+        "id": "shiseido_tokiwa",
+        "a": "shiseido",
+        "b": "tokiwa",
+        "type": "supply",
+        "date": "2026-10",
+        "title": "資生堂とトキワがリップの製品化で協業",
+        "text": "東京都の非売品TOKYO LIP BALMで、資生堂は原料監修・評価と処方開発、トキワは中味・容器の製造と品質確認を担当。これは公表された特定製品の事例。",
+        "status": "製品ごとの協業",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "資生堂：TOKYO LIP BALMの協業体制",
+            "url": "https://corp.shiseido.com/jp/newsimg/4234_t4v29_jp.pdf"
+          }
+        ]
+      },
+      {
+        "id": "fine_transfer",
+        "a": "shiseido",
+        "b": "finetoday",
+        "type": "deal",
+        "date": "2021-07",
+        "title": "資生堂の日用品事業からファイントゥデイへ",
+        "text": "資生堂は2021年にパーソナルケア事業を譲渡。2024年に残りの保有株式も売却した。現在の資本関係を示す線ではなく、事業の来歴を示す。",
+        "status": "過去の事業譲渡・現在の資本関係なし",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "資生堂：パーソナルケア事業の譲渡完了",
+            "url": "https://corp.shiseido.com/jp/news/detail.html?n=00000000003156"
+          },
+          {
+            "title": "ファイントゥデイ：資生堂との資本関係解消",
+            "url": "https://www.finetoday.com/jp/uploadimages/FineToday_pr2025100302_JP.pdf"
+          }
+        ]
+      },
+      {
+        "id": "loreal_kering",
+        "a": "loreal",
+        "b": "kering",
+        "type": "deal",
+        "date": "2026-03",
+        "title": "ロレアルがKering Beautéを買収",
+        "text": "ロレアルはケリングの美容事業Kering Beautéを買収し、Creedを取得。Bottega VenetaとBalenciagaの香水・美容製品については独占ライセンス契約を結んだ。ケリング全体の買収ではない。",
+        "status": "美容事業の買収・ブランド使用契約",
+        "rivals": false,
+        "rivalNote": "",
+        "source": [
+          {
+            "title": "ロレアル：Kering Beautéの買収完了",
+            "url": "https://www.loreal.com/en/press-release/group/loreal-completes-the-acquisition-of-kering-beaute/"
+          }
+        ]
+      }
+    ],
+    "stories": [
+      {
+        "id": "story-health",
+        "title": "飲料・金融が化粧品会社を買う理由",
+        "text": "キリンは健康事業を強くするためにファンケルを、オリックスは事業承継と成長支援の一環でDHCを取得。",
+        "links": [
+          "kirin_fancl",
+          "orix_dhc"
+        ]
+      },
+      {
+        "id": "story-brands",
+        "title": "海外ブランドを取り込んで広がる",
+        "text": "資生堂・コーセー・花王などは海外ブランドを取得。ブランド名と運営会社の区別、買収した時期に注目。",
+        "links": [
+          "shiseido_nars",
+          "shiseido_drunk",
+          "kose_tarte",
+          "kao_oribe",
+          "loreal_kering"
+        ]
+      },
+      {
+        "id": "story-rivals",
+        "title": "競合でも手を組む",
+        "text": "商品を売る場面では競争する会社同士が、安全性の研究や容器の回収では協力する。",
+        "links": [
+          "shiseido_kao",
+          "kao_kose"
+        ]
+      },
+      {
+        "id": "story-production",
+        "title": "ブランドだけでは商品はできない",
+        "text": "容器メーカーや受託製造企業と一つの商品や技術をつくる。どの製品での協業かまで見る。",
+        "links": [
+          "kose_yoshino",
+          "shiseido_yoshino",
+          "shiseido_tokiwa"
+        ]
+      },
+      {
+        "id": "story-reorg",
+        "title": "会社の外へ出た事業もある",
+        "text": "資生堂の日用品事業は外部へ譲渡され、ファイントゥデイへ。過去の出資と現在の資本関係を分けて見る。",
+        "links": [
+          "fine_transfer"
+        ]
+      }
+    ]
+  }
 }

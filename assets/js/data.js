@@ -15,7 +15,7 @@ export const NET_TYPES = {
   dispute: { label: '訴訟・対立' },
   capital: { label: '出資・合弁' },
   supply: { label: '製造委託・供給' },
-  deal: { label: '買収・統合の交渉' },
+  deal: { label: '買収・譲渡・交渉' },
 };
 
 const DATA_ROOT = 'data/';
@@ -385,6 +385,7 @@ function normalizeNetwork(raw, companyMap, warnings) {
     lead: raw.lead || '',
     note: raw.note || '',
     updated: raw.updated || '',
+    nodeCountLabel: raw.nodeCountLabel || '社',
     nodeMap,
     zones: zones.filter((z) => z.ids.length),
     links,

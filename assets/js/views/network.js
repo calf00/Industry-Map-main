@@ -246,7 +246,7 @@ export function renderNetwork(root, ctx) {
     <section class="card net-intro">
       <h2>${esc(net.title)}</h2>
       ${net.lead ? `<p>${esc(net.lead)}</p>` : ''}
-      <p class="net-stats"><b>${net.links.length}</b>本のつながり<span aria-hidden="true">・</span>うち<b class="is-rival">${rivalCount}</b>本は表向きは競合どうし<span aria-hidden="true">・</span><b>${net.nodeMap.size}</b>社（海外を含む）</p>
+      <p class="net-stats"><b>${net.links.length}</b>本のつながり<span aria-hidden="true">・</span>うち<b class="is-rival">${rivalCount}</b>本は表向きは競合どうし<span aria-hidden="true">・</span><b>${net.nodeMap.size}</b>${esc(net.nodeCountLabel)}（海外を含む）</p>
     </section>
     <div class="net-tools" role="group" aria-label="絞り込み">
       <button type="button" class="chip-toggle net-rivals" data-rivals aria-pressed="false">表は競合どうしだけ<span class="sw" aria-hidden="true"></span></button>
