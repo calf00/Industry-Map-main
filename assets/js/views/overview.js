@@ -1,6 +1,6 @@
 // 概要表示：市場規模・トレンド・年表・出典
-import { esc, formatValue } from '../util.js?v=20261124-brands';
-import { acquisitionCasesHtml } from './acquisition-cases.js?v=20261124-brands';
+import { esc, formatValue } from '../util.js?v=20261124-design';
+import { acquisitionCasesHtml } from './acquisition-cases.js?v=20261124-design';
 
 function safeUrl(u) {
   return /^https?:\/\//i.test(u || '') ? u : '';

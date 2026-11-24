@@ -63,9 +63,11 @@ try {
     assert.equal(await page.locator('.bf-search').getAttribute('type'), 'search');
     assert.equal(await page.locator('.bf-count').getAttribute('aria-live'), 'polite');
     await noOverflow('ブランド全体');
+    await page.screenshot({ path: `${OUT}${label}-cosmetics-brands-viewport.png` });
     await page.screenshot({ path: `${OUT}${label}-cosmetics-brands.png`, fullPage: true });
 
     await expectFamily('KATE', /花王/, /カネボウ/, /KATE/);
+    await page.screenshot({ path: `${OUT}${label}-cosmetics-brand-search.png`, fullPage: true });
     await expectFamily('けいと', /花王/, /カネボウ/, /KATE/);
     await expectFamily('ＫＡＴＥ', /花王/, /カネボウ/, /KATE/);
     await expectFamily('THREE', /ポーラ.*オルビス/, /ACRO/, /THREE/);

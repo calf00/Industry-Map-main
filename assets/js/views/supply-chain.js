@@ -1,5 +1,5 @@
 // 工程ごとの根拠と、未確認のつながりを見せる。
-import { esc } from '../util.js?v=20261124-brands';
+import { esc } from '../util.js?v=20261124-design';
 
 function sourceLinks(sources = []) {
   return sources.filter((s) => /^https?:\/\//i.test(s.url || '')).map((s) =>

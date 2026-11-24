@@ -1,6 +1,6 @@
 // 左のメニュー：業界一覧と横断検索
-import { esc, normalizeText, debounce } from './util.js?v=20261124-brands';
-import { loadAllSectors, loadSector } from './data.js?v=20261124-brands';
+import { esc, normalizeText, debounce } from './util.js?v=20261124-design';
+import { loadAllSectors, loadSector } from './data.js?v=20261124-design';
 
 const drawer = document.getElementById('drawer');
 const backdrop = document.getElementById('drawerBackdrop');

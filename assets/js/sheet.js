@@ -1,6 +1,6 @@
 // 企業の詳細パネル（スマホ：下から出るシート / PC：右側パネル）
-import { esc, formatValue, isDesktop } from './util.js?v=20261124-brands';
-import { RELATION_TYPES } from './data.js?v=20261124-brands';
+import { esc, formatValue, isDesktop } from './util.js?v=20261124-design';
+import { RELATION_TYPES } from './data.js?v=20261124-design';
 
 const sheet = document.getElementById('sheet');
 let handlers = { onClose: () => {}, onSelect: () => {}, onNetwork: () => {}, onAcquisition: () => {}, onBrands: () => {} };

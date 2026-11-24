@@ -1,5 +1,5 @@
 // データ読み込み（data/index.json と data/sectors/*.json）
-import { resolveColor } from './util.js?v=20261124-brands';
+import { resolveColor } from './util.js?v=20261124-design';
 
 export const RELATION_TYPES = {
   subsidiary: { label: '子会社・傘下', parent: '親会社', child: '子会社・傘下' },

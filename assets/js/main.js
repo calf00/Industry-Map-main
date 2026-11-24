@@ -1,15 +1,15 @@
 // 業界地図 — エントリーポイント
 // URL: #/<業界id>/<map|rank|brands|info|net>/<企業id>（買収比較は info?case=<id>）
-import { $, esc, store } from './util.js?v=20261124-brands';
-import { loadIndex, loadSector, visibleCompanies, DataError } from './data.js?v=20261124-brands';
-import { renderMap, applyMapSelection, drawLines } from './views/map.js?v=20261124-brands';
-import { renderRanking } from './views/ranking.js?v=20261124-brands';
-import { renderOverview } from './views/overview.js?v=20261124-brands';
-import { renderNetwork, focusNetworkNode } from './views/network.js?v=20261124-brands';
-import { renderSupplyChain } from './views/supply-chain.js?v=20261124-brands';
-import { renderBrandFamilies } from './views/brand-families.js?v=20261124-brands';
-import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js?v=20261124-brands';
-import { initDrawer, closeDrawer, isDrawerOpen } from './drawer.js?v=20261124-brands';
+import { $, esc, store } from './util.js?v=20261124-design';
+import { loadIndex, loadSector, visibleCompanies, DataError } from './data.js?v=20261124-design';
+import { renderMap, applyMapSelection, drawLines } from './views/map.js?v=20261124-design';
+import { renderRanking } from './views/ranking.js?v=20261124-design';
+import { renderOverview } from './views/overview.js?v=20261124-design';
+import { renderNetwork, focusNetworkNode } from './views/network.js?v=20261124-design';
+import { renderSupplyChain } from './views/supply-chain.js?v=20261124-design';
+import { renderBrandFamilies } from './views/brand-families.js?v=20261124-design';
+import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js?v=20261124-design';
+import { initDrawer, closeDrawer, isDrawerOpen } from './drawer.js?v=20261124-design';
 
 // when：その業界にデータがあるときだけ出すタブ
 const VIEWS = [

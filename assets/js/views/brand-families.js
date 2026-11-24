@@ -1,5 +1,5 @@
 // ブランド名から、その運営会社と親会社をたどる。
-import { esc, normalizeText } from '../util.js?v=20261124-brands';
+import { esc, normalizeText } from '../util.js?v=20261124-design';
 
 function safeUrl(value) {
   if (typeof value !== 'string' || !/^https?:\/\//i.test(value.trim())) return '';
