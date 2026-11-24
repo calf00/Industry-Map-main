@@ -1,9 +1,9 @@
 // 企業の詳細パネル（スマホ：下から出るシート / PC：右側パネル）
-import { esc, formatValue, isDesktop } from './util.js';
-import { RELATION_TYPES } from './data.js';
+import { esc, formatValue, isDesktop } from './util.js?v=20261124-brands';
+import { RELATION_TYPES } from './data.js?v=20261124-brands';
 
 const sheet = document.getElementById('sheet');
-let handlers = { onClose: () => {}, onSelect: () => {}, onNetwork: () => {} };
+let handlers = { onClose: () => {}, onSelect: () => {}, onNetwork: () => {}, onAcquisition: () => {}, onBrands: () => {} };
 let lastFocus = null;
 
 export function initSheet(h) {
@@ -12,6 +12,10 @@ export function initSheet(h) {
     if (e.target.closest('[data-close]')) return handlers.onClose();
     const net = e.target.closest('[data-net]');
     if (net) return handlers.onNetwork?.(net.dataset.net);
+    const acquisition = e.target.closest('[data-sheet-case]');
+    if (acquisition) return handlers.onAcquisition?.(acquisition.dataset.sheetCase);
+    const family = e.target.closest('[data-sheet-family]');
+    if (family) return handlers.onBrands?.(family.dataset.sheetFamily);
     const go = e.target.closest('[data-goto]');
     if (go) handlers.onSelect(go.dataset.goto);
   });
@@ -43,6 +47,8 @@ export function renderSheet(sector, c) {
   const rels = relationRows(sector, c);
   const netLinks = sector.network ? sector.network.links.filter((l) => l.a === c.id || l.b === c.id) : [];
   const netRivals = netLinks.filter((l) => l.rivals).length;
+  const family = sector.brandFamilies?.families.find((f) => f.companyId === c.id || f.branches.some((b) => b.companyId === c.id || b.brands.some((brand) => brand.companyId === c.id)));
+  const acquisition = sector.acquisitionCases?.cases.find((item) => item.companyIds?.includes(c.id));
   const url = safeUrl(c.url);
   const sub = [c.code && `${c.region === 'overseas' ? 'ティッカー' : '証券コード'} ${c.code}`, c.fy && `${c.fy}`].filter(Boolean).join(' ・ ');
 
@@ -89,7 +95,11 @@ export function renderSheet(sector, c) {
             <svg class="rel-go" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button></li>`)
         .join('')}</ul></section>` : ''}
-      ${netLinks.length ? `<section><h3>提携・特許・訴訟</h3>
+      ${family || acquisition ? `<section class="sheet-research"><h3>系列と買収を調べる</h3>
+        ${family ? `<button type="button" class="acq-net-link" data-sheet-family="${esc(c.id)}">グループ内のブランドを見る</button>` : ''}
+        ${acquisition ? `<button type="button" class="acq-net-link" data-sheet-case="${esc(acquisition.id)}">買収の狙いとその後</button>` : ''}
+      </section>` : ''}
+      ${netLinks.length ? `<section><h3>買収・提携などのつながり</h3>
         <button type="button" class="net-jump" data-net="${esc(c.id)}">
           <span class="net-jump-main"><b>つながりマップで見る</b><span>${netLinks.length}本${netRivals ? `（うち表向きは競合どうし ${netRivals}本）` : ''}</span></span>
           <svg class="rel-go" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>

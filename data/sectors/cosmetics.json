@@ -227,7 +227,10 @@
         "アネッサ",
         "IPSA",
         "マキアージュ",
-        "dプログラム"
+        "dプログラム",
+        "BAUM",
+        "HAKU",
+        "IHADA"
       ],
       "points": [
         "中国・トラベルリテール（免税）の消費低下と、米国ドランク エレファントの不振で減収（前期比-2.1%）",
@@ -272,7 +275,10 @@
         "雪肌精",
         "エスプリーク",
         "ADDICTION",
-        "ジルスチュアート ビューティ"
+        "ジルスチュアート ビューティ",
+        "ヴィセ",
+        "FASIO",
+        "ONE BY KOSÉ"
       ],
       "points": [
         "コスメデコルテが3期連続で過去最高売上",
@@ -312,7 +318,22 @@
         "est",
         "ソフィーナ",
         "KANEBO",
-        "KATE"
+        "KATE",
+        {
+          "name": "Curél（キュレル）"
+        },
+        {
+          "name": "RMK",
+          "note": "エキップが展開"
+        },
+        {
+          "name": "SUQQU（スック）",
+          "note": "エキップが展開"
+        },
+        {
+          "name": "athletia（アスレティア）",
+          "note": "エキップが展開"
+        }
       ],
       "points": [
         "化粧品事業は前期比+7.2%の増収で、営業黒字に転換",
@@ -397,7 +418,15 @@
         "POLA",
         "ORBIS",
         "DECENCIA",
-        "Jurlique"
+        "Jurlique",
+        {
+          "name": "THREE（スリー）",
+          "note": "ACROが展開"
+        },
+        {
+          "name": "FUJIMI",
+          "note": "トリコが展開"
+        }
       ],
       "points": [
         "売上はほぼ横ばい（POLAが減収、ORBISが増益）",
@@ -2123,7 +2152,8 @@
     "海外企業は 1ドル=150円・1ユーロ=170円・100ウォン=10.5円・1元=21円 で円に換算した概算です。",
     "花王・P&G・ユニリーバ・LVMH・LG生活健康・シャネルは化粧品関連の部門の数値です。",
     "数値のない会社は点線の小さいタイルで表示しています。",
-    "買収比較とファンケル・DHCの通期売上は2026年11月24日に確認。買収比較内の2026年1〜9月実績は、年間売上を比べるランキングには使用していない。両社の営業利益は現在の開示と比較できる値を確認できず空欄。"
+    "買収比較とファンケル・DHCの通期売上は2026年11月24日に確認。買収比較内の2026年1〜9月実績は、年間売上を比べるランキングには使用していない。両社の営業利益は現在の開示と比較できる値を確認できず空欄。",
+    "ブランドと系列の欄は2026年11月24日に公式資料で確認。代表的な6グループを収録しており、全ブランド・全子会社の一覧ではありません。"
   ],
   "sources": [
     {
@@ -2422,6 +2452,10 @@
           "共同研究や共同販路が、それぞれ何億円の追加利益を生んだかは、確認資料から切り分けられない。",
           "錠剤設計AIの開発期間短縮日数や利益への寄与額は、この発表では示されていない。",
           "2019年からの協業と、完全子会社化によって新たに生まれた効果を分けて見る必要がある。"
+        ],
+        "companyIds": [
+          "kirin",
+          "fancl"
         ]
       },
       {
@@ -2524,6 +2558,10 @@
           "組織改革や商品刷新のうち、買収が直接生んだ売上・利益の増分は分離できない。",
           "買収時に掲げた投資収益率の目標が達成されたかは、確認資料では分からない。",
           "商品刷新が買収だけによって実現したとは断定できない。"
+        ],
+        "companyIds": [
+          "orix",
+          "dhc"
         ]
       },
       {
@@ -2630,6 +2668,10 @@
           "買収後の成長のうち、コーセーの技術や販売支援による増分だけを切り分けることはできない。",
           "残りの株式を追加取得した時期・価格は、今回の確認資料では確定していない。",
           "2014年の取得価格だけから、追加投資も含めた投資回収率は算定できない。"
+        ],
+        "companyIds": [
+          "kose",
+          "tarte"
         ]
       }
     ]
@@ -3170,5 +3212,858 @@
         ]
       }
     ]
+  },
+  "brandFamilies": {
+    "title": "このブランド、どのグループ？",
+    "updated": "2026-11-24",
+    "intro": "ブランド名を検索すると、展開会社と企業グループが分かります。海外も含め、6グループの代表的な系列を収録しています。",
+    "families": [
+      {
+        "id": "shiseido",
+        "companyId": "shiseido",
+        "name": "資生堂",
+        "summary": "社名と同じSHISEIDOに加え、NARSやアネッサなど、異なる名前のブランドを展開する。",
+        "sources": [
+          {
+            "title": "資生堂：ブランド一覧",
+            "url": "https://corp.shiseido.com/jp/brands/"
+          },
+          {
+            "title": "資生堂：拠点・グループ会社",
+            "url": "https://corp.shiseido.com/jp/company/locations/"
+          }
+        ],
+        "branches": [
+          {
+            "id": "shiseido_portfolio",
+            "kind": "portfolio",
+            "label": "資生堂グループのブランド",
+            "relation": "グループが展開する主なブランド",
+            "brands": [
+              {
+                "name": "SHISEIDO",
+                "aliases": [
+                  "シセイドウ",
+                  "しせいどう",
+                  "資生堂"
+                ]
+              },
+              {
+                "name": "クレ・ド・ポー ボーテ",
+                "aliases": [
+                  "Clé de Peau Beauté",
+                  "Cle de Peau Beaute",
+                  "くれどぽーぼーて"
+                ]
+              },
+              {
+                "name": "エリクシール",
+                "aliases": [
+                  "ELIXIR",
+                  "えりくしーる"
+                ]
+              },
+              {
+                "name": "アネッサ",
+                "aliases": [
+                  "ANESSA",
+                  "あねっさ"
+                ]
+              },
+              {
+                "name": "マキアージュ",
+                "aliases": [
+                  "MAQuillAGE",
+                  "MAQUILLAGE",
+                  "まきあーじゅ"
+                ]
+              },
+              {
+                "name": "dプログラム",
+                "aliases": [
+                  "d program",
+                  "d-program",
+                  "ディープログラム",
+                  "でぃーぷろぐらむ"
+                ]
+              },
+              {
+                "name": "BAUM",
+                "aliases": [
+                  "バウム",
+                  "ばうむ"
+                ]
+              },
+              {
+                "name": "HAKU",
+                "aliases": [
+                  "ハク",
+                  "はく"
+                ]
+              },
+              {
+                "name": "IHADA",
+                "aliases": [
+                  "イハダ",
+                  "いはだ"
+                ]
+              },
+              {
+                "name": "インテグレート",
+                "aliases": [
+                  "INTEGRATE",
+                  "いんてぐれーと"
+                ]
+              },
+              {
+                "name": "マジョリカ マジョルカ",
+                "aliases": [
+                  "MAJOLICA MAJORCA",
+                  "まじょりかまじょるか"
+                ]
+              },
+              {
+                "name": "NARS",
+                "aliases": [
+                  "ナーズ",
+                  "なーず"
+                ],
+                "companyId": "nars"
+              },
+              {
+                "name": "Drunk Elephant",
+                "aliases": [
+                  "ドランク エレファント",
+                  "ドランクエレファント",
+                  "どらんくえれふぁんと"
+                ],
+                "companyId": "drunk_elephant"
+              }
+            ],
+            "sources": [
+              {
+                "title": "資生堂：ブランド一覧",
+                "url": "https://corp.shiseido.com/jp/brands/"
+              }
+            ]
+          },
+          {
+            "id": "shiseido_ipsa",
+            "kind": "company",
+            "label": "株式会社イプサ",
+            "relation": "資生堂の主要子会社",
+            "brands": [
+              {
+                "name": "IPSA",
+                "aliases": [
+                  "イプサ",
+                  "いぷさ"
+                ],
+                "note": "会社名も株式会社イプサ。同名のブランドを展開。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "資生堂：拠点・グループ会社",
+                "url": "https://corp.shiseido.com/jp/company/locations/"
+              },
+              {
+                "title": "資生堂：ブランド一覧",
+                "url": "https://corp.shiseido.com/jp/brands/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kao",
+        "companyId": "kao",
+        "name": "花王",
+        "summary": "花王のブランドに、カネボウ化粧品やエキップのブランドも加わる。海外のヘアケアも持つ。",
+        "sources": [
+          {
+            "title": "花王：公式ブランド一覧",
+            "url": "https://www.kao.com/global/en/brands/"
+          },
+          {
+            "title": "花王：国内を含むアジア・オセアニアのグループ会社",
+            "url": "https://www.kao.com/jp/corporate/outline/group-companies/asea-oceania/"
+          }
+        ],
+        "branches": [
+          {
+            "id": "kao_portfolio",
+            "kind": "portfolio",
+            "label": "花王の化粧品ブランド",
+            "relation": "花王グループが展開",
+            "brands": [
+              {
+                "name": "est",
+                "aliases": [
+                  "エスト",
+                  "えすと"
+                ]
+              },
+              {
+                "name": "SOFINA iP",
+                "aliases": [
+                  "ソフィーナ iP",
+                  "ソフィーナアイピー",
+                  "そふぃーなあいぴー"
+                ]
+              },
+              {
+                "name": "ALBLANC",
+                "aliases": [
+                  "アルブラン",
+                  "あるぶらん"
+                ]
+              },
+              {
+                "name": "Curél",
+                "aliases": [
+                  "Curel",
+                  "キュレル",
+                  "きゅれる"
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "title": "花王：公式ブランド一覧",
+                "url": "https://www.kao.com/global/en/brands/"
+              }
+            ]
+          },
+          {
+            "id": "kao_kanebo",
+            "kind": "company",
+            "label": "株式会社カネボウ化粧品",
+            "relation": "花王のグループ会社",
+            "brands": [
+              {
+                "name": "KANEBO",
+                "aliases": [
+                  "カネボウ",
+                  "かねぼう"
+                ],
+                "note": "会社名のカネボウ化粧品と、ブランド名のKANEBOを区別。"
+              },
+              {
+                "name": "SENSAI",
+                "aliases": [
+                  "センサイ",
+                  "せんさい"
+                ]
+              },
+              {
+                "name": "KATE",
+                "aliases": [
+                  "ケイト",
+                  "けいと"
+                ]
+              },
+              {
+                "name": "LUNASOL",
+                "aliases": [
+                  "ルナソル",
+                  "るなそる"
+                ]
+              },
+              {
+                "name": "suisai",
+                "aliases": [
+                  "スイサイ",
+                  "すいさい"
+                ]
+              },
+              {
+                "name": "freeplus",
+                "aliases": [
+                  "フリープラス",
+                  "ふりーぷらす"
+                ]
+              },
+              {
+                "name": "ALLIE",
+                "aliases": [
+                  "アリィー",
+                  "アリー",
+                  "ありぃー"
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "title": "花王：国内を含むアジア・オセアニアのグループ会社",
+                "url": "https://www.kao.com/jp/corporate/outline/group-companies/asea-oceania/"
+              },
+              {
+                "title": "カネボウ化粧品：商品・ブランド一覧",
+                "url": "https://www.kanebo-cosmetics.co.jp/brand/"
+              }
+            ],
+            "companyId": "kanebo"
+          },
+          {
+            "id": "kao_equipe",
+            "kind": "company",
+            "label": "株式会社エキップ",
+            "relation": "花王のグループ会社",
+            "brands": [
+              {
+                "name": "RMK",
+                "aliases": [
+                  "アールエムケー",
+                  "あーるえむけー"
+                ]
+              },
+              {
+                "name": "SUQQU",
+                "aliases": [
+                  "スック",
+                  "すっく"
+                ]
+              },
+              {
+                "name": "athletia",
+                "aliases": [
+                  "アスレティア",
+                  "あすれてぃあ"
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "title": "花王：国内を含むアジア・オセアニアのグループ会社",
+                "url": "https://www.kao.com/jp/corporate/outline/group-companies/asea-oceania/"
+              },
+              {
+                "title": "エキップ：会社概要・取扱ブランド",
+                "url": "https://www.eqp.co.jp/"
+              }
+            ]
+          },
+          {
+            "id": "kao_overseas",
+            "kind": "portfolio",
+            "label": "海外で育つブランド",
+            "relation": "花王グループが展開",
+            "brands": [
+              {
+                "name": "MOLTON BROWN",
+                "aliases": [
+                  "モルトンブラウン",
+                  "モルトン ブラウン",
+                  "もるとんぶらうん"
+                ],
+                "companyId": "molton_brown"
+              },
+              {
+                "name": "ORIBE",
+                "aliases": [
+                  "オリベ",
+                  "おりべ"
+                ],
+                "note": "サロン向けヘアケアのブランド。",
+                "companyId": "oribe"
+              }
+            ],
+            "sources": [
+              {
+                "title": "花王：公式ブランド一覧",
+                "url": "https://www.kao.com/global/en/brands/"
+              },
+              {
+                "title": "花王：北米・中南米グループ会社（Oribe Hair Care）",
+                "url": "https://www.kao.com/jp/corporate/outline/group-companies/america/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kose",
+        "companyId": "kose",
+        "name": "コーセーホールディングス",
+        "summary": "事業会社のコーセー、アルビオン、コスメポート、米国のtarteなどを束ねる。",
+        "acquisitionCaseId": "kose_tarte",
+        "sources": [
+          {
+            "title": "コーセーHD：現行グループ会社",
+            "url": "https://koseholdings.co.jp/ja/info/bases/"
+          },
+          {
+            "title": "コーセー化粧品販売：取扱ブランド",
+            "url": "https://koseholdings.co.jp/ja/kose/info/bases/kose-sales/"
+          }
+        ],
+        "branches": [
+          {
+            "id": "kose_operating",
+            "kind": "company",
+            "label": "株式会社コーセー",
+            "relation": "コーセーHDの事業会社",
+            "brands": [
+              {
+                "name": "コスメデコルテ",
+                "aliases": [
+                  "DECORTÉ",
+                  "DECORTE",
+                  "デコルテ",
+                  "こすめでこるて",
+                  "でこるて"
+                ]
+              },
+              {
+                "name": "雪肌精",
+                "aliases": [
+                  "SEKKISEI",
+                  "セッキセイ",
+                  "せっきせい"
+                ]
+              },
+              {
+                "name": "エスプリーク",
+                "aliases": [
+                  "ESPRIQUE",
+                  "えすぷりーく"
+                ]
+              },
+              {
+                "name": "ADDICTION",
+                "aliases": [
+                  "アディクション",
+                  "あでぃくしょん"
+                ]
+              },
+              {
+                "name": "JILL STUART Beauty",
+                "aliases": [
+                  "ジルスチュアート ビューティ",
+                  "ジルスチュアート",
+                  "じるすちゅあーと"
+                ],
+                "note": "コーセーが化粧品に関する世界商標権を取得。ファッション会社全体の買収とは別。"
+              },
+              {
+                "name": "ヴィセ",
+                "aliases": [
+                  "Visée",
+                  "VISEE",
+                  "Visee",
+                  "ビセ",
+                  "ゔぃせ",
+                  "びせ"
+                ]
+              },
+              {
+                "name": "FASIO",
+                "aliases": [
+                  "ファシオ",
+                  "ふぁしお"
+                ]
+              },
+              {
+                "name": "ONE BY KOSÉ",
+                "aliases": [
+                  "ONE BY KOSE",
+                  "ワンバイコーセー",
+                  "わんばいこーせー"
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "title": "コーセーHD：現行グループ会社",
+                "url": "https://koseholdings.co.jp/ja/info/bases/"
+              },
+              {
+                "title": "コーセー化粧品販売：取扱ブランド",
+                "url": "https://koseholdings.co.jp/ja/kose/info/bases/kose-sales/"
+              },
+              {
+                "title": "コーセー：歴史・化粧品商標権の取得",
+                "url": "https://koseholdings.co.jp/ja/kose/info/museum/"
+              }
+            ]
+          },
+          {
+            "id": "kose_albion",
+            "kind": "company",
+            "label": "株式会社アルビオン",
+            "relation": "コーセーHDのグループ会社",
+            "brands": [
+              {
+                "name": "ALBION",
+                "aliases": [
+                  "アルビオン",
+                  "あるびおん"
+                ],
+                "note": "会社名も株式会社アルビオン。同名のブランドを展開。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "コーセーHD：現行グループ会社",
+                "url": "https://koseholdings.co.jp/ja/info/bases/"
+              },
+              {
+                "title": "アルビオン：公式商品サイト",
+                "url": "https://albion.co.jp/site/albion/c/c10/"
+              }
+            ],
+            "companyId": "albion"
+          },
+          {
+            "id": "kose_cosmeport",
+            "kind": "company",
+            "label": "コーセーコスメポート株式会社",
+            "relation": "コーセーHDのグループ会社",
+            "brands": [
+              {
+                "name": "ソフティモ",
+                "aliases": [
+                  "softymo",
+                  "そふてぃも"
+                ]
+              },
+              {
+                "name": "ジュレーム",
+                "aliases": [
+                  "Je l’aime",
+                  "Je l'aime",
+                  "じゅれーむ"
+                ]
+              },
+              {
+                "name": "クリアターン",
+                "aliases": [
+                  "CLEAR TURN",
+                  "くりあたーん"
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "title": "コーセーHD：現行グループ会社",
+                "url": "https://koseholdings.co.jp/ja/info/bases/"
+              },
+              {
+                "title": "コーセーコスメポート：ブランド一覧",
+                "url": "https://www.kosecosmeport.co.jp/brand/index.html"
+              }
+            ],
+            "companyId": "kose_cosmeport"
+          },
+          {
+            "id": "kose_overseas",
+            "kind": "portfolio",
+            "label": "海外ブランド",
+            "relation": "米国のタルトもコーセーHDのグループ",
+            "brands": [
+              {
+                "name": "tarte",
+                "aliases": [
+                  "タルト",
+                  "たると"
+                ],
+                "note": "運営会社はTarte, Inc.。",
+                "companyId": "tarte"
+              }
+            ],
+            "sources": [
+              {
+                "title": "コーセーHD：現行グループ会社",
+                "url": "https://koseholdings.co.jp/ja/info/bases/"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pola",
+        "companyId": "pola",
+        "name": "ポーラ・オルビスホールディングス",
+        "summary": "POLA・ORBISを軸に、ACROのTHREEやトリコのFUJIMIなど、複数の事業会社がブランドを展開する。",
+        "sources": [
+          {
+            "title": "ポーラ・オルビスHD：2025年通期決算補足資料（ブランド別実績・育成ブランド）",
+            "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+          },
+          {
+            "title": "ポーラ・オルビスHD：グループ各社への問い合わせ先",
+            "url": "https://ir.po-holdings.co.jp/ja/Contact.html"
+          }
+        ],
+        "branches": [
+          {
+            "id": "pola_operating",
+            "kind": "company",
+            "label": "株式会社ポーラ",
+            "relation": "ポーラ・オルビスHDのグループ会社",
+            "brands": [
+              {
+                "name": "POLA",
+                "aliases": [
+                  "ポーラ",
+                  "ぽーら"
+                ],
+                "note": "持株会社のポーラ・オルビスHDと、運営会社のポーラを区別。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "ポーラ・オルビスHD：グループ各社への問い合わせ先",
+                "url": "https://ir.po-holdings.co.jp/ja/Contact.html"
+              },
+              {
+                "title": "ポーラ・オルビスHD：2025年通期決算補足資料（ブランド別実績・育成ブランド）",
+                "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+              }
+            ]
+          },
+          {
+            "id": "pola_orbis",
+            "kind": "company",
+            "label": "オルビス株式会社",
+            "relation": "ポーラ・オルビスHDのグループ会社",
+            "brands": [
+              {
+                "name": "ORBIS",
+                "aliases": [
+                  "オルビス",
+                  "おるびす"
+                ],
+                "note": "会社名もオルビス株式会社。同名のブランドを展開。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "ポーラ・オルビスHD：グループ各社への問い合わせ先",
+                "url": "https://ir.po-holdings.co.jp/ja/Contact.html"
+              },
+              {
+                "title": "ポーラ・オルビスHD：2025年通期決算補足資料（ブランド別実績・育成ブランド）",
+                "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+              }
+            ]
+          },
+          {
+            "id": "pola_decencia",
+            "kind": "company",
+            "label": "株式会社DECENCIA",
+            "relation": "ポーラ・オルビスHDのグループ会社",
+            "brands": [
+              {
+                "name": "DECENCIA",
+                "aliases": [
+                  "ディセンシア",
+                  "でぃせんしあ"
+                ],
+                "note": "会社名も株式会社DECENCIA。同名のブランドを展開。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "ポーラ・オルビスHD：グループ各社への問い合わせ先",
+                "url": "https://ir.po-holdings.co.jp/ja/Contact.html"
+              },
+              {
+                "title": "ポーラ・オルビスHD：2025年通期説明資料・育成ブランド（24ページ）",
+                "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+              }
+            ]
+          },
+          {
+            "id": "pola_acro",
+            "kind": "company",
+            "label": "株式会社ACRO",
+            "relation": "ポーラ・オルビスHDが株主の運営会社",
+            "brands": [
+              {
+                "name": "THREE",
+                "aliases": [
+                  "スリー",
+                  "すりー"
+                ]
+              }
+            ],
+            "sources": [
+              {
+                "title": "ACRO：株主・運営ブランド",
+                "url": "https://acro-inc.co.jp/"
+              },
+              {
+                "title": "ポーラ・オルビスHD：2025年通期説明資料・育成ブランド（24ページ）",
+                "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+              }
+            ]
+          },
+          {
+            "id": "pola_tricot",
+            "kind": "company",
+            "label": "トリコ株式会社",
+            "relation": "2021年にポーラ・オルビスHDが全株式を取得",
+            "brands": [
+              {
+                "name": "FUJIMI",
+                "aliases": [
+                  "フジミ",
+                  "ふじみ"
+                ],
+                "note": "プロテインやサプリメントなどを含むビューティケアブランド。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "ポーラ・オルビスHD：トリコ全株式取得完了（2021年4月1日）",
+                "url": "https://ir.po-holdings.co.jp/news_en/news/news-2588030752246492629/main/0/link/202104_stock2_EN.pdf"
+              },
+              {
+                "title": "ポーラ・オルビスHD：2025年通期説明資料・育成ブランド（24ページ）",
+                "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+              },
+              {
+                "title": "ポーラ・オルビスHD：2026年のグループ子会社役員異動（トリコを記載）",
+                "url": "https://data.swcms.net/file/po-holdings/news/news/auto_20260525545910/pdfFile.pdf"
+              },
+              {
+                "title": "トリコ：現在の企業情報・FUJIMIの運営",
+                "url": "https://tricot-inc.com/"
+              }
+            ]
+          },
+          {
+            "id": "pola_overseas",
+            "kind": "portfolio",
+            "label": "海外ブランド",
+            "relation": "豪州発のブランドもグループで展開",
+            "brands": [
+              {
+                "name": "Jurlique",
+                "aliases": [
+                  "ジュリーク",
+                  "じゅりーく"
+                ],
+                "companyId": "jurlique"
+              }
+            ],
+            "sources": [
+              {
+                "title": "ポーラ・オルビスHD：2025年通期決算補足資料（ブランド別実績・育成ブランド）",
+                "url": "https://ir.po-holdings.co.jp/ja/Library/Presentation/main/05/teaserItems1/0119/linkList/0/link/FY2025Q4_hosokusiryo.pdf"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "kirin",
+        "companyId": "kirin",
+        "name": "キリンホールディングス",
+        "summary": "ファンケルの親会社。研究・素材と、化粧品・健康食品の顧客接点を組み合わせる。",
+        "acquisitionCaseId": "kirin_fancl",
+        "sources": [
+          {
+            "title": "キリン：ファンケル連結化・完全子会社化の沿革",
+            "url": "https://www.kirinholdings.com/jp/company/history/2020/"
+          },
+          {
+            "title": "キリン：グループの展開ブランド",
+            "url": "https://www.kirinholdings.com/jp/brands/product_brands/"
+          }
+        ],
+        "branches": [
+          {
+            "id": "kirin_fancl_group",
+            "kind": "company",
+            "companyId": "fancl",
+            "label": "株式会社ファンケル",
+            "relation": "2025年3月にキリンHDの完全子会社となった。以下はファンケルグループの展開ブランド。",
+            "brands": [
+              {
+                "name": "FANCL",
+                "aliases": [
+                  "ファンケル",
+                  "ふぁんける"
+                ],
+                "companyId": "fancl"
+              },
+              {
+                "name": "アテニア",
+                "aliases": [
+                  "Attenir",
+                  "あてにあ"
+                ],
+                "note": "ファンケルの連結子会社・株式会社アテニアが展開。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "ファンケル：事業紹介・展開ブランド",
+                "url": "https://www.fancl.jp/about/business/index.html"
+              },
+              {
+                "title": "ファンケル：グループ会社（アテニアは連結子会社）",
+                "url": "https://www.fancl.jp/about/group/index.html"
+              },
+              {
+                "title": "アテニア：会社情報",
+                "url": "https://www.attenir.co.jp/brand/company/index.html"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "orix",
+        "companyId": "orix",
+        "name": "オリックス",
+        "summary": "金融・事業投資グループがDHCを傘下に。ブランドだけでなく、事業承継と組織改革にも関わる。",
+        "acquisitionCaseId": "orix_dhc",
+        "sources": [
+          {
+            "title": "オリックス：DHC株式取得",
+            "url": "https://www.orix.co.jp/grp/company/newsroom/newsrelease/pdf/230131_ORIXJ.pdf"
+          },
+          {
+            "title": "オリックス：2025年3月期20-F、F-43",
+            "url": "https://www.orix.co.jp/grp/pdf/company/ir/library/20f/2025_4QE.pdf#page=245"
+          }
+        ],
+        "branches": [
+          {
+            "id": "orix_dhc_group",
+            "kind": "company",
+            "companyId": "dhc",
+            "label": "株式会社ディーエイチシー",
+            "relation": "2023年にオリックスが子会社化。DHCは会社の略称とブランド名の両方に使われる。",
+            "brands": [
+              {
+                "name": "DHC",
+                "aliases": [
+                  "ディーエイチシー",
+                  "でぃーえいちしー"
+                ],
+                "companyId": "dhc",
+                "note": "化粧品・健康食品などを展開。"
+              }
+            ],
+            "sources": [
+              {
+                "title": "DHC：事業紹介",
+                "url": "https://dhc-corporate.co.jp/business/"
+              },
+              {
+                "title": "DHC：会社概要",
+                "url": "https://dhc-corporate.co.jp/company/profile/"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "note": "会社は「会社」、商品群の名前は「ブランド」として区別しています。線はグループ内のまとまりを示し、直接の100%出資を表すものではありません。運営・商標権・ライセンスはそれぞれ異なり、個別の説明と公式根拠を確認できます。"
   }
 }

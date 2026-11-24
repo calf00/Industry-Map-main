@@ -1,5 +1,5 @@
 // データ読み込み（data/index.json と data/sectors/*.json）
-import { resolveColor } from './util.js';
+import { resolveColor } from './util.js?v=20261124-brands';
 
 export const RELATION_TYPES = {
   subsidiary: { label: '子会社・傘下', parent: '親会社', child: '子会社・傘下' },
@@ -235,6 +235,7 @@ export function normalizeSector(raw, meta) {
     summary: raw.summary || '',
     supplyChain: raw.supplyChain && Array.isArray(raw.supplyChain.lanes) ? raw.supplyChain : null,
     acquisitionCases: raw.acquisitionCases && Array.isArray(raw.acquisitionCases.cases) ? raw.acquisitionCases : null,
+    brandFamilies: normalizeBrandFamilies(raw.brandFamilies, companyMap, warnings),
     focusWorld: raw.focus === 'world', // 海外が中心の業界（「日本」表示のときに「世界」への切り替えを案内する）
     market,
     metrics,
@@ -267,6 +268,51 @@ export function normalizeSector(raw, meta) {
     network: normalizeNetwork(raw.network, companyMap, warnings),
     warnings,
   };
+}
+
+/** 会社と展開ブランドの系列。業績タイルとは別に、資料で確認したまとまりを表示する。 */
+function normalizeBrandFamilies(raw, companyMap, warnings) {
+  if (!raw || !Array.isArray(raw.families)) return null;
+  const sources = (items) => (Array.isArray(items) ? items : [])
+    .filter((s) => s && typeof s.url === 'string')
+    .map((s) => ({ title: s.title || s.url, url: s.url }));
+  const companyId = (id, label) => {
+    if (!id) return '';
+    if (companyMap.has(id)) return String(id);
+    warnings.push(`ブランドの系列「${label}」の企業「${id}」が companies にありません`);
+    return '';
+  };
+  const seen = new Set();
+  const families = raw.families.filter(Boolean).map((f, i) => {
+    const parent = companyId(f.companyId, f.name || f.id);
+    if (!parent) return null;
+    const id = String(f.id || parent);
+    if (seen.has(id)) { warnings.push(`ブランドの系列 id「${id}」が重複しています`); return null; }
+    seen.add(id);
+    const branches = (Array.isArray(f.branches) ? f.branches : []).filter(Boolean).map((b, bi) => ({
+      id: String(b.id || `${id}-${bi}`),
+      kind: b.kind === 'company' ? 'company' : 'portfolio',
+      label: String(b.label || '展開ブランド'),
+      companyId: companyId(b.companyId, b.label),
+      relation: String(b.relation || ''),
+      sources: sources(b.sources),
+      brands: (Array.isArray(b.brands) ? b.brands : []).filter((brand) => brand && brand.name).map((brand) => ({
+        name: String(brand.name),
+        aliases: (Array.isArray(brand.aliases) ? brand.aliases : []).filter((alias) => typeof alias === 'string'),
+        note: String(brand.note || ''),
+        companyId: companyId(brand.companyId, brand.name),
+      })),
+    })).filter((b) => b.brands.length);
+    if (!branches.length) return null;
+    return {
+      id, companyId: parent,
+      name: String(f.name || companyMap.get(parent).short || companyMap.get(parent).name),
+      summary: String(f.summary || ''),
+      acquisitionCaseId: String(f.acquisitionCaseId || ''),
+      sources: sources(f.sources), branches,
+    };
+  }).filter(Boolean);
+  return families.length ? { title: raw.title || 'ブランドと企業グループ', intro: raw.intro || '', note: raw.note || '', updated: raw.updated || '', families } : null;
 }
 
 /**

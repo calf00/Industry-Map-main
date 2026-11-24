@@ -1,6 +1,6 @@
 // つながり表示：会社を円の上に並べ、提携・特許・訴訟・出資などを線で結ぶ
-import { esc } from '../util.js';
-import { NET_TYPES } from '../data.js';
+import { esc } from '../util.js?v=20261124-brands';
+import { NET_TYPES } from '../data.js?v=20261124-brands';
 
 const R = 116; // 会社を並べる円の半径（viewBox の単位）
 const HALF = 200; // viewBox の半分の大きさ
@@ -119,7 +119,7 @@ function svgHtml(net) {
 
 /* ---------------- カード ---------------- */
 
-function linkCard(net, l) {
+function linkCard(net, l, caseIds) {
   const a = net.nodeMap.get(l.a);
   const b = net.nodeMap.get(l.b);
   const co = (n) => `<button type="button" class="nc-co" data-node="${esc(n.id)}">${esc(n.display)}</button>`;
@@ -140,6 +140,7 @@ function linkCard(net, l) {
     <div class="nc-pair">${co(a)}<span class="nc-x" aria-hidden="true">×</span>${co(b)}</div>
     ${l.title ? `<h3 class="nc-title">${esc(l.title)}</h3>` : ''}
     ${l.text ? `<p class="nc-text">${esc(l.text)}</p>` : ''}
+    ${caseIds?.has(l.id) ? `<button type="button" class="nc-case-link" data-acquisition-case="${esc(l.id)}">買収の狙いとその後</button>` : ''}
     ${l.status || sources ? `<div class="nc-foot">${l.status ? `<span class="nc-status">${esc(l.status)}</span>` : ''}${sources}</div>` : ''}
   </li>`;
 }
@@ -163,7 +164,7 @@ function validFocus(net, focus) {
   return null;
 }
 
-function focusPanel(net, st, visible) {
+function focusPanel(net, st, visible, caseIds) {
   const f = st.focus;
   if (!f) return '';
   const ids = focusLinkIds(net, f);
@@ -202,7 +203,7 @@ function focusPanel(net, st, visible) {
     </div>
     ${body}
     ${actions ? `<div class="nf-actions">${actions}</div>` : ''}
-    ${shown.length ? `<ul class="nc-list">${shown.map((l) => linkCard(net, l)).join('')}</ul>` : ''}
+    ${shown.length ? `<ul class="nc-list">${shown.map((l) => linkCard(net, l, caseIds)).join('')}</ul>` : ''}
     ${hidden ? `<p class="nf-hidden">絞り込みで ${hidden}本を隠しています。<button type="button" class="link-btn" data-reset>すべて表示</button></p>` : ''}
   </section>`;
 }
@@ -236,6 +237,7 @@ function storiesHtml(net) {
 
 export function renderNetwork(root, ctx) {
   const net = ctx.sector.network;
+  const caseIds = new Set(ctx.sector.acquisitionCases?.cases.map((item) => item.id) || []);
   const st = getNetState(ctx.state, ctx.sector.id);
   st.focus = validFocus(net, st.focus);
   const rivalCount = net.links.filter((l) => l.rivals).length;
@@ -334,19 +336,23 @@ export function renderNetwork(root, ctx) {
     root.querySelectorAll('[data-type]').forEach((b) => b.setAttribute('aria-pressed', String(st.types.has(b.dataset.type))));
     root.querySelectorAll('[data-story]').forEach((b) => b.closest('.ns-card').classList.toggle('is-on', st.focus?.kind === 'story' && st.focus.id === b.dataset.story));
 
-    root.querySelector('.net-focus-slot').innerHTML = focusPanel(net, st, visible);
+    root.querySelector('.net-focus-slot').innerHTML = focusPanel(net, st, visible, caseIds);
     const list = net.links.filter(visible).sort(byDateDesc);
     const shown = st.showAll ? list : list.slice(0, LIST_LIMIT);
     root.querySelector('.net-all-count').textContent = `（${list.length}本${list.length < net.links.length ? ` / 全${net.links.length}本` : ''}・新しい順）`;
     root.querySelector('.net-all-list').innerHTML = list.length
-      ? shown.map((l) => linkCard(net, l)).join('') +
+      ? shown.map((l) => linkCard(net, l, caseIds)).join('') +
         (shown.length < list.length ? `<li class="nc-more"><button type="button" class="ns-btn" data-showall>残り${list.length - shown.length}本を表示</button></li>` : '')
       : '<li class="empty">条件に合うつながりがありません。</li>';
   }
 
-  root.addEventListener('click', (e) => {
+  // 共有の root は画面を切り替えても残るため、今回生成した要素にだけ委譲する。
+  // 再入場や別業界への移動で、以前の操作処理が重複して実行されるのを防ぐ。
+  root.querySelector('.net').addEventListener('click', (e) => {
     const t = e.target;
     if (t.closest('a')) return;
+    const acquisition = t.closest('[data-acquisition-case]');
+    if (acquisition) return ctx.onAcquisition(acquisition.dataset.acquisitionCase);
     const node = t.closest('[data-node]');
     if (node) {
       const inGraph = !!node.closest('.net-svg');

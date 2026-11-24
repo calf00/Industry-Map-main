@@ -1,6 +1,6 @@
 // ランキング表示：指標を選んで棒グラフで比較
-import { esc, formatValue } from '../util.js';
-import { tagSelectHtml } from './map.js';
+import { esc, formatValue } from '../util.js?v=20261124-brands';
+import { tagSelectHtml } from './map.js?v=20261124-brands';
 
 export function renderRanking(root, ctx) {
   const { sector, state, visible } = ctx;

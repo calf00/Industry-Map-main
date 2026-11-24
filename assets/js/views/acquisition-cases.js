@@ -1,5 +1,5 @@
 // 買収時の狙い、確認できた変化、まだ分からないことを事例ごとに比べる。
-import { esc } from '../util.js';
+import { esc } from '../util.js?v=20261124-brands';
 
 function safeUrl(value) {
   if (typeof value !== 'string' || !/^https?:\/\//i.test(value.trim())) return '';
@@ -19,13 +19,18 @@ function sourcesHtml(sources = []) {
   return links.length ? `<div class="acq-sources" aria-label="出典">${links.join('')}</div>` : '';
 }
 
-function caseHtml(item) {
+function caseHtml(item, sectorId) {
   const timeline = item.timeline || [];
   const unknowns = item.unknowns || [];
+  const targetId = item.companyIds?.at(-1);
   return `<article class="acq-case" id="acq-${esc(item.id)}">
     <header class="acq-case-head">
       <span class="acq-kind">${esc(item.kind)}</span>
       <h3>${esc(item.title)}</h3>
+      <div class="acq-actions">
+        ${targetId ? `<button type="button" data-acq-company="${esc(targetId)}">対象企業の詳細</button><button type="button" data-acq-network="${esc(targetId)}">この企業のつながり</button>` : ''}
+        <a href="#/${esc(encodeURIComponent(sectorId))}/info?case=${esc(encodeURIComponent(item.id))}">この比較へのリンク</a>
+      </div>
     </header>
     <dl class="acq-fields">${(item.fields || []).map((field) => `<div class="acq-field">
       <dt>${esc(field.label)}</dt>
@@ -54,6 +59,6 @@ export function acquisitionCasesHtml(data, sectorId) {
     </div>
     ${data.intro ? `<p class="acq-intro">${esc(data.intro)}</p>` : ''}
     <a class="acq-net-link" href="#/${esc(encodeURIComponent(String(sectorId)))}/net">企業のつながりを図で見る</a>
-    <div class="acq-grid" style="--acq-field-count:${fieldCount};--acq-row-count:${fieldCount + 2}">${data.cases.map(caseHtml).join('')}</div>
+    <div class="acq-grid" style="--acq-field-count:${fieldCount};--acq-row-count:${fieldCount + 2}">${data.cases.map((item) => caseHtml(item, sectorId)).join('')}</div>
   </section>`;
 }

@@ -1,19 +1,21 @@
 // 業界地図 — エントリーポイント
-// URL: #/<業界id>/<map|rank|info>/<企業id>
-import { $, esc, store } from './util.js';
-import { loadIndex, loadSector, visibleCompanies, DataError } from './data.js';
-import { renderMap, applyMapSelection, drawLines } from './views/map.js';
-import { renderRanking } from './views/ranking.js';
-import { renderOverview } from './views/overview.js';
-import { renderNetwork, focusNetworkNode } from './views/network.js';
-import { renderSupplyChain } from './views/supply-chain.js';
-import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js';
-import { initDrawer, closeDrawer, isDrawerOpen } from './drawer.js';
+// URL: #/<業界id>/<map|rank|brands|info|net>/<企業id>（買収比較は info?case=<id>）
+import { $, esc, store } from './util.js?v=20261124-brands';
+import { loadIndex, loadSector, visibleCompanies, DataError } from './data.js?v=20261124-brands';
+import { renderMap, applyMapSelection, drawLines } from './views/map.js?v=20261124-brands';
+import { renderRanking } from './views/ranking.js?v=20261124-brands';
+import { renderOverview } from './views/overview.js?v=20261124-brands';
+import { renderNetwork, focusNetworkNode } from './views/network.js?v=20261124-brands';
+import { renderSupplyChain } from './views/supply-chain.js?v=20261124-brands';
+import { renderBrandFamilies } from './views/brand-families.js?v=20261124-brands';
+import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js?v=20261124-brands';
+import { initDrawer, closeDrawer, isDrawerOpen } from './drawer.js?v=20261124-brands';
 
 // when：その業界にデータがあるときだけ出すタブ
 const VIEWS = [
   { id: 'map', label: 'マップ' },
   { id: 'rank', label: 'ランキング', when: (s) => !s.supplyChain },
+  { id: 'brands', label: 'ブランド', when: (s) => !!s.brandFamilies },
   { id: 'info', label: '概要' },
   { id: 'net', label: 'つながり', when: (s) => !!s.network },
 ];
@@ -32,6 +34,8 @@ const state = {
   rankGroup: {},
   tagFilter: {},
   net: {}, // つながりタブの選択・絞り込み（業界ごと）
+  brandFamilies: {},
+  caseId: null,
 };
 
 let sheetPushed = false; // 詳細を開いたときに履歴を積んだか（戻るボタンで閉じるため）
@@ -49,24 +53,27 @@ const els = {
 
 function parseHash() {
   const raw = location.hash.replace(/^#\/?/, '');
-  const [sectorId = '', view = '', companyId = ''] = raw.split('/').map((s) => {
+  const [path, query = ''] = raw.split('?');
+  const [sectorId = '', view = '', companyId = ''] = path.split('/').map((s) => {
     try { return decodeURIComponent(s); } catch { return s; }
   });
   return {
     sectorId: sectorId || null,
     view: VIEWS.some((v) => v.id === view) ? view : 'map',
     companyId: companyId || null,
+    caseId: view === 'info' ? new URLSearchParams(query).get('case') : null,
   };
 }
 
-function buildHash({ sectorId, view, companyId }) {
+function buildHash({ sectorId, view, companyId, caseId }) {
   let h = `#/${encodeURIComponent(sectorId)}/${view}`;
   if (companyId) h += `/${encodeURIComponent(companyId)}`;
+  if (view === 'info' && caseId) h += `?case=${encodeURIComponent(caseId)}`;
   return h;
 }
 
 function navigate(patch, { replace = false } = {}) {
-  const next = { sectorId: state.sectorId, view: state.view, companyId: state.companyId, ...patch };
+  const next = { sectorId: state.sectorId, view: state.view, companyId: state.companyId, caseId: state.caseId, ...patch };
   const url = buildHash(next);
   if (url !== location.hash) {
     if (replace) history.replaceState(null, '', url);
@@ -126,6 +133,9 @@ async function applyRoute() {
   }
   const viewChanged = r.view !== state.view;
   state.view = r.view;
+  const caseId = state.sector.acquisitionCases?.cases.some((c) => c.id === r.caseId) ? r.caseId : null;
+  const caseChanged = caseId !== state.caseId;
+  state.caseId = caseId;
 
   let cid = r.companyId && state.sector.companyMap.has(r.companyId) ? r.companyId : null;
   // 海外企業が選ばれたのに「日本」表示なら、自動で「世界」に切り替える
@@ -140,6 +150,15 @@ async function applyRoute() {
 
   if (sectorChanged || viewChanged || regionChanged) renderAll(sectorChanged);
   else syncSelection();
+  if (caseId && !cid && (sectorChanged || viewChanged || caseChanged)) {
+    const card = els.view.querySelector(`#acq-${CSS.escape(caseId)}`);
+    if (card) {
+      els.view.querySelectorAll('.acq-case').forEach((c) => c.classList.toggle('is-focused', c === card));
+      card.setAttribute('tabindex', '-1');
+      card.focus({ preventScroll: true });
+      card.scrollIntoView({ block: 'start' });
+    }
+  } else if (!caseId) els.view.querySelectorAll('.acq-case.is-focused').forEach((c) => c.classList.remove('is-focused'));
 }
 
 /* ---------------- render ---------------- */
@@ -174,6 +193,8 @@ function renderTabs(activeId = state.sectorId) {
 function renderHero() {
   const s = state.sector;
   els.hero.classList.toggle('hero-supply', !!s.supplyChain);
+  const compact = state.view === 'brands';
+  els.hero.classList.toggle('hero-compact', compact);
   const visible = visibleCompanies(s, state.region);
   const stats = [];
   if (s.market.jp) stats.push(statHtml(s.market.jp, false));
@@ -189,8 +210,8 @@ function renderHero() {
         <h1>${esc(s.name)}</h1>
       </div>
     </div>
-    ${s.summary ? `<p class="hero-summary">${esc(s.summary.split(/\n+/)[0])}</p>` : ''}
-    <div class="stats">${stats.join('')}</div>
+    ${s.summary && !compact ? `<p class="hero-summary">${esc(s.summary.split(/\n+/)[0])}</p>` : ''}
+    ${!compact ? `<div class="stats">${stats.join('')}</div>` : ''}
     ${s.focusWorld && state.region === 'jp' ? worldCallout(s) : ''}`;
 }
 
@@ -208,7 +229,9 @@ function statHtml(m, world) {
 }
 
 function renderViewSwitch() {
-  els.viewSwitch.innerHTML = VIEWS.filter((v) => viewAvailable(v.id, state.sector)).map(
+  const views = VIEWS.filter((v) => viewAvailable(v.id, state.sector));
+  els.viewSwitch.classList.toggle('is-extended', views.length > 4);
+  els.viewSwitch.innerHTML = views.map(
     (v) => `<button type="button" class="seg-btn" role="tab" data-view="${v.id}" aria-selected="${v.id === state.view}">${v.id === 'map' && state.sector.supplyChain ? 'サプライチェーン' : v.label}</button>`,
   ).join('');
 }
@@ -219,6 +242,8 @@ function viewContext() {
     state,
     visible: visibleCompanies(state.sector, state.region),
     onSelect: selectCompany,
+    onAcquisition: openAcquisitionCase,
+    onNetwork: openNetworkFor,
     onSizeMetric: (key) => {
       state.sizeMetric[state.sector.id] = key;
       renderView();
@@ -256,6 +281,7 @@ function renderView() {
   if (state.view === 'map' && state.sector.supplyChain) renderSupplyChain(els.view, ctx);
   else if (state.view === 'map') renderMap(els.view, ctx);
   else if (state.view === 'rank') renderRanking(els.view, ctx);
+  else if (state.view === 'brands') renderBrandFamilies(els.view, ctx);
   else if (state.view === 'net') renderNetwork(els.view, ctx);
   else renderOverview(els.view, ctx);
 }
@@ -324,13 +350,30 @@ function closeCompany() {
 
 /** 会社の詳細から「つながり」タブへ：その会社を選んだ状態で開く */
 function openNetworkFor(id) {
-  if (!state.sector?.network) return;
+  if (!state.sector?.network?.nodeMap.has(id)) return;
   focusNetworkNode(state, state.sectorId, id);
   const already = state.view === 'net';
   sheetPushed = false;
   navigate({ view: 'net', companyId: null }, { replace: true });
   if (already) renderView();
   window.scrollTo({ top: 0, behavior: already ? 'smooth' : 'auto' });
+}
+
+function openAcquisitionCase(id) {
+  if (!state.sector?.acquisitionCases?.cases.some((c) => c.id === id)) return;
+  sheetPushed = false;
+  navigate({ view: 'info', companyId: null, caseId: id });
+}
+
+function openBrandFamilyFor(id) {
+  const family = state.sector?.brandFamilies?.families.find((f) => f.companyId === id || f.branches.some((b) => b.companyId === id || b.brands.some((brand) => brand.companyId === id)));
+  if (!family) return;
+  state.brandFamilies[state.sectorId] = { query: '', family: family.id };
+  const already = state.view === 'brands';
+  sheetPushed = false;
+  navigate({ view: 'brands', companyId: null, caseId: null });
+  if (already) renderView();
+  window.scrollTo({ top: 0 });
 }
 
 function setRegion(region) {
@@ -412,7 +455,7 @@ async function boot() {
     if (b) setRegion(b.dataset.region);
   });
 
-  initSheet({ onClose: closeCompany, onSelect: selectCompany, onNetwork: openNetworkFor });
+  initSheet({ onClose: closeCompany, onSelect: selectCompany, onNetwork: openNetworkFor, onAcquisition: openAcquisitionCase, onBrands: openBrandFamilyFor });
   initDrawer({
     getState: () => state,
     onSector: (id) => {

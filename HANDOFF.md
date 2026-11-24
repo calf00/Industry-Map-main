@@ -1,5 +1,16 @@
 # 引き継ぎメモ（Claude Code → Codex）
 
+## 2026-11-24 追記：ブランドから系列を調べる
+
+- 化粧品に「ブランド」タブ（`#/cosmetics/brands`）を追加。`brandFamilies` に6グループ・52ブランドを収録。会社とブランドの区別、別名・かな検索、親会社フィルター、公式根拠を表示。全系列を海外も含めて表示し、地域切り替えで系統を分断しない。
+- 本体は `assets/js/views/brand-families.js` と `assets/css/brand-families.css`。ブランド画面ではヒーローを小さくし、図の詳しい読み方を details に置く。スマホの5つの表示タブは2行にする。
+- 企業シート・ブランド図・つながりから買収比較へ相互に移動できる。各比較の `companyIds` は企業詳細との対応。個別比較URLは `#/cosmetics/info?case=kirin_fancl` などで、対象カードへ移動する。
+- カネボウ化粧品とKANEBO、アルビオンとALBIONなど会社と同名ブランドを区別。エキップのRMK/SUQQU/athletia、ACROのTHREE、トリコのFUJIMIも追加。JILL STUARTは化粧品の商標権の説明を添え、ファッション会社の買収と混同しない。
+- `network.js` のclick委譲先を共有 `#view` から新しい `.net` へ変更。画面再入場や他業界切り替えで古いイベントが残り、選択が二重実行される不具合を再現して修正した。
+- ブラウザに旧JSが残る現象を確認したため、`index.html` のCSS/JSとES moduleのimportへ共通の `?v=20261124-brands` を付けた。今後JS/CSSの更新を公開するときは関連する版番号もそろえて更新する。
+- 追加回帰テスト：`tools/brand-families-test.mjs`、`tools/network-regression.mjs`。既存smokeと同じ `BASE_URL` / `CHROMIUM_PATH` とPlaywrightを使用する。
+- 検証結果：全14業界のsmoke `ALL CHECKS PASSED`。ブランド検索・系列から詳細/買収比較/図への移動・直接URL・地域切替・入力中のカーソル保持はスマホ/PCで `BRAND FAMILIES REGRESSION PASSED`、画面往復・フィルター・選択解除は `NETWORK REGRESSION PASSED`。実画面とスマホ/PCの画面写真も確認済み。
+
 ## 2026-11-24 追記：化粧品の買収比較
 
 - 化粧品の概要に `acquisitionCases` を追加。キリン×ファンケル、オリックス×DHC、コーセーHD×tarteを同じ4項目で比較し、各記述に一次資料を添える。専用表示は `assets/js/views/acquisition-cases.js`、スタイルは `acq-*`。スマホ1列、1100px以上3列。経緯と未解明の点は native details。

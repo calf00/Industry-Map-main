@@ -10,6 +10,7 @@
 - 収録：アイカツ・化粧品・牛丼・おもちゃ・半導体・紙・パルプ（和紙）・化学・鉄鋼・非鉄金属・繊維・ガラス・セラミックス・エネルギー・自動車・ファッションブランド
 - 「アイカツ」では、アンコールのカードと筐体の供給を工程図で紹介。確認できた本作の事実、カード事業部の一般業務、一般例・仮説・過去事例を区別し、それぞれの出典を添えています。
 - 化粧品の「概要」では、キリン×ファンケル、オリックス×DHC、コーセーHD×tarteの買収を、狙い・実行・業績・読み取りで比較できます。経緯と未解明の点は開閉でき、各説明から一次資料を読めます。
+- 化粧品の「ブランド」では、6グループ・52ブランドを会社の系列から探せます。ブランド名・読みがな・英語名で検索し、企業詳細・つながり図・買収比較へ移動できます。会社とブランド、直接の保有とグループ内の展開を区別しています。
 - データベースは使わず、`data/` の JSON ファイルを足していくだけで業界を増やせます
 
 ## 見かた
@@ -65,7 +66,8 @@ JSON の書き間違いがあると画面にエラーが出ます。企業のグ
 | `trends` / `timeline` / `notes` / `sources` | 概要タブに出る、トレンド・年表・メモ・出典 |
 | `tagGroups` | タグの見出しと並び順（例：`[{ "label": "主力カテゴリー", "tags": ["スキンケア", "メイク"] }]`） |
 | `insights` | 議論した仮説の「考察メモ」。`hypothesis`（仮説）・`verdict`（`yes` / `partly` / `no` / `open`）・`sections`（`label` と `items`）・`conclusion`・`tag`（マップで光らせるタグ） |
-| `acquisitionCases` | 概要タブの買収比較（任意）。`title`・`updated`（比較の確認日）・`intro`・`cases`。事例は `id`・`title`・`kind`・`fields: [{label, text, sources: [{title, url}]}]`・`timeline: [{date, text, sources}]`・`unknowns: [文字列]`。同じ比較項目を同じ順に置く。 |
+| `acquisitionCases` | 概要タブの買収比較（任意）。`title`・`updated`（比較の確認日）・`intro`・`cases`。事例は `id`・`title`・`kind`・`companyIds`（買い手・対象企業の順）・`fields: [{label, text, sources: [{title, url}]}]`・`timeline: [{date, text, sources}]`・`unknowns: [文字列]`。同じ比較項目を同じ順に置く。 |
+| `brandFamilies` | ブランドと系列（任意）。`title`・`intro`・`note`（図の読み方）・`updated`・`families`。グループは `id`・`companyId`・`name`・`summary`・`sources`・`branches`・任意の `acquisitionCaseId`。枝は `id`・`kind`（`company` / `portfolio`）・`label`・`relation`・任意の `companyId`・`sources`・`brands`。ブランドは `name`・`aliases`（別名や読み）・`note`・任意の `companyId`（既存詳細へのリンク）。 |
 
 ### グループ（`groups`）
 

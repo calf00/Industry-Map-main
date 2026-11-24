@@ -205,6 +205,10 @@ p { margin: 0; }
   border-radius: 999px;
 }
 .seg-views { margin: 14px 0 12px; }
+@media (max-width: 480px) {
+  .seg-views.is-extended { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: var(--radius); }
+  .seg-views.is-extended .seg-btn { min-width: 0; padding-inline: 4px; }
+}
 .seg-btn {
   flex: 1; border: 0; cursor: pointer;
   padding: 8px 10px; border-radius: 999px;
@@ -908,3 +912,14 @@ body.sheet-open .main { padding-bottom: calc(var(--sheet-space, 58dvh) + 16px); 
     .acq-fields { display: contents; }
   }
 }
+
+/* 調べる画面を相互につなぐ操作 */
+.acq-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+.acq-actions button, .acq-actions a, .nc-case-link { display: inline-block; padding: 7px 10px; min-height: 38px; border: 1px solid var(--navy-200); border-radius: var(--radius-sm); background: var(--white); color: var(--navy-700); font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; text-decoration: none; }
+.acq-actions button:hover, .acq-actions a:hover, .nc-case-link:hover { background: var(--navy-50); }
+.nc-case-link { margin-top: 12px; }
+.acq-case { scroll-margin-top: calc(var(--appbar-h) + var(--tabs-h) + 16px); }
+.acq-case.is-focused { border-color: var(--navy-400); box-shadow: 0 0 0 2px var(--navy-100); outline: none; }
+.sheet-research .acq-net-link { margin: 4px 4px 4px 0; cursor: pointer; }
+.hero.hero-compact { padding-block: 14px; }
+.hero-compact .hero-ico { width: 42px; height: 42px; font-size: 24px; }

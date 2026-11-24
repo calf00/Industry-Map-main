@@ -1,0 +1,67 @@
+/* ブランドの系統図。会社とブランドを別の形で見せる。 */
+.bf-view { display: grid; gap: 18px; min-width: 0; font-size: 16px; }
+.bf-intro { display: grid; gap: 8px; }
+.bf-eyebrow { color: var(--navy-600); font-size: 14px; font-weight: 700; }
+.bf-intro h2 { color: var(--navy-800); font-size: clamp(23px, 3vw, 30px); letter-spacing: .02em; }
+.bf-description { max-width: 78ch; line-height: 1.8; white-space: pre-line; }
+.bf-updated { color: var(--text-sub); font-size: 13px; }
+
+.bf-tools { display: grid; gap: 16px; padding: 18px; border: 1px solid var(--pink-200); border-radius: var(--radius); background: var(--white); }
+.bf-search-field, .bf-family-field { display: grid; align-content: start; gap: 7px; min-width: 0; }
+.bf-tools label { font-size: 14px; font-weight: 700; color: var(--navy-700); }
+.bf-search, .bf-family-filter { width: 100%; min-width: 0; min-height: 46px; border: 1px solid var(--gray-300); border-radius: var(--radius-sm); padding: 10px 12px; color: var(--navy-800); background: var(--white); font: inherit; font-size: 16px; }
+.bf-search::placeholder { color: var(--gray-600); }
+.bf-examples { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; font-size: 14px; color: var(--text-sub); }
+.bf-examples button { min-height: 36px; border: 1px solid var(--navy-100); border-radius: 999px; padding: 4px 11px; background: var(--navy-50); color: var(--navy-700); cursor: pointer; font-size: 14px; }
+.bf-examples button:hover { border-color: var(--navy-300); }
+.bf-count { color: var(--navy-700); font-size: 14px; font-weight: 600; }
+.bf-grid { display: grid; align-items: start; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.bf-card { min-width: 0; overflow-wrap: anywhere; border: 1px solid var(--gray-200); border-top: 4px solid var(--navy-200); border-radius: var(--radius-lg); background: var(--white); box-shadow: var(--shadow); }
+.bf-card-head { padding: 18px 18px 14px; }
+.bf-card-head h3 { margin-top: 7px; color: var(--navy-800); font-size: 22px; }
+.bf-card-head p { margin-top: 9px; font-size: 16px; line-height: 1.75; }
+.bf-kind { display: inline-block; border-radius: 5px; padding: 2px 7px; background: var(--gray-100); color: var(--navy-700); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.bf-parent-kind { background: var(--navy-100); }
+.bf-tree { margin: 0 18px 18px 26px; padding: 0 0 0 16px; list-style: none; border-left: 2px solid var(--pink-200); }
+.bf-branch { position: relative; margin: 0; padding: 0 0 20px; min-width: 0; }
+.bf-branch::before { content: ''; position: absolute; left: -18px; top: 15px; width: 13px; border-top: 2px solid var(--pink-200); }
+.bf-branch:last-child { padding-bottom: 0; }
+.bf-branch-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 8px; }
+.bf-branch-head h4 { min-width: 0; font-size: 17px; }
+.bf-company-link { border: 0; border-radius: 4px; padding: 0; background: transparent; color: var(--navy-700); font-size: inherit; font-weight: 700; text-align: left; text-decoration: underline; text-decoration-color: var(--navy-200); text-underline-offset: 4px; cursor: pointer; overflow-wrap: anywhere; }
+.bf-company-link:hover { text-decoration-color: var(--navy-600); }
+.bf-relation { margin-top: 7px; color: var(--text-sub); font-size: 14px; line-height: 1.7; }
+.bf-brands { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 8px; margin-top: 10px; }
+.bf-brand { display: inline-flex; flex-wrap: wrap; align-items: baseline; justify-content: flex-start; gap: 2px 6px; max-width: 100%; border: 1px solid var(--pink-100); border-radius: var(--radius-sm); padding: 7px 10px; background: var(--pink-50); color: var(--navy-800); text-align: left; line-height: 1.5; }
+button.bf-brand { cursor: pointer; }
+button.bf-brand:hover { border-color: var(--pink-400); }
+.bf-brand-kind { color: var(--text-sub); font-size: 14px; font-weight: 400; }
+.bf-brand-name { font-size: 16px; font-weight: 600; overflow-wrap: anywhere; }
+.bf-brand-note { flex-basis: 100%; color: var(--text-sub); font-size: 13px; line-height: 1.6; }
+.bf-view mark { border-radius: 3px; padding: 0 2px; background: var(--pink-200); color: var(--navy-800); }
+.bf-brand.is-match { border-color: var(--pink-400); background: var(--pink-100); box-shadow: 0 0 0 1px var(--pink-200); }
+.bf-card-head.is-match { background: var(--navy-50); }
+.bf-branch.is-match > .bf-branch-head { border-radius: 6px; background: var(--pink-50); }
+.bf-actions { display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--gray-100); padding: 14px 18px; }
+.bf-actions button, .bf-empty button { min-height: 42px; border: 1px solid var(--navy-200); border-radius: var(--radius-sm); padding: 8px 12px; background: var(--white); color: var(--navy-700); font-size: 14px; font-weight: 600; cursor: pointer; }
+.bf-actions button:hover, .bf-empty button:hover { border-color: var(--navy-400); background: var(--navy-50); }
+.bf-actions .bf-case-link { border-color: var(--pink-200); background: var(--pink-50); }
+.bf-evidence { border-top: 1px solid var(--gray-200); border-radius: 0 0 var(--radius-lg) var(--radius-lg); background: var(--gray-50); }
+.bf-evidence summary { padding: 13px 18px; color: var(--navy-700); font-size: 14px; font-weight: 600; cursor: pointer; }
+.bf-evidence-body { display: grid; gap: 13px; padding: 0 18px 18px; }
+.bf-source-group > p { color: var(--navy-700); font-size: 14px; font-weight: 600; }
+.bf-source-links { display: grid; gap: 5px; margin-top: 5px; }
+.bf-source-links a { width: fit-content; max-width: 100%; color: var(--navy-600); font-size: 13px; line-height: 1.7; text-underline-offset: 3px; overflow-wrap: anywhere; }
+.bf-empty { display: grid; justify-items: start; gap: 12px; border: 1px dashed var(--gray-300); border-radius: var(--radius); padding: 24px 18px; background: var(--white); }
+.bf-empty h3 { font-size: 18px; }
+.bf-empty p { color: var(--text-sub); }
+@media (min-width: 700px) {
+  .bf-tools { grid-template-columns: minmax(0, 1fr) minmax(220px, .5fr); gap: 24px; }
+}
+@media (min-width: 900px) {
+  .bf-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.bf-family-filter { appearance: none; padding-right: 35px; background-image: linear-gradient(45deg, transparent 50%, var(--navy-600) 50%), linear-gradient(135deg, var(--navy-600) 50%, transparent 50%); background-size: 5px 5px, 5px 5px; background-repeat: no-repeat; background-position: calc(100% - 20px) 50%, calc(100% - 15px) 50%; }
+.bf-reading { color: var(--navy-700); font-size: 14px; }
+.bf-reading summary { width: fit-content; padding: 5px 0; cursor: pointer; font-weight: 600; }
+.bf-reading p { margin-top: 8px; max-width: 78ch; font-size: 16px; line-height: 1.8; }

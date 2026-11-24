@@ -1,6 +1,6 @@
 // 概要表示：市場規模・トレンド・年表・出典
-import { esc, formatValue } from '../util.js';
-import { acquisitionCasesHtml } from './acquisition-cases.js';
+import { esc, formatValue } from '../util.js?v=20261124-brands';
+import { acquisitionCasesHtml } from './acquisition-cases.js?v=20261124-brands';
 
 function safeUrl(u) {
   return /^https?:\/\//i.test(u || '') ? u : '';
@@ -26,6 +26,8 @@ export function renderOverview(root, ctx) {
   if (sector.summary) {
     parts.push(`<section class="card span2"><h2>ざっくり言うと</h2>${sector.summary.split(/\n+/).map((p) => `<p>${esc(p)}</p>`).join('')}</section>`);
   }
+
+  if (sector.brandFamilies) parts.push(`<section class="card span2"><h2>ブランドから系列をたどる</h2><p>KATE・アテニア・THREEなど、ブランド名から展開会社と企業グループを探せます。</p><p><a class="acq-net-link" href="#/${esc(encodeURIComponent(sector.id))}/brands">ブランドとグループを見る</a></p></section>`);
 
   if (sector.acquisitionCases) parts.push(acquisitionCasesHtml(sector.acquisitionCases, sector.id));
 
@@ -103,4 +105,10 @@ export function renderOverview(root, ctx) {
 
   root.innerHTML = `<div class="ov">${parts.join('')}</div>`;
   root.querySelectorAll('[data-tag]').forEach((b) => b.addEventListener('click', () => ctx.onShowTag(b.dataset.tag)));
+  root.querySelector('.ov').addEventListener('click', (e) => {
+    const company = e.target.closest('[data-acq-company]');
+    if (company) ctx.onSelect(company.dataset.acqCompany);
+    const network = e.target.closest('[data-acq-network]');
+    if (network) ctx.onNetwork(network.dataset.acqNetwork);
+  });
 }

@@ -1,6 +1,6 @@
 // マップ表示：グループごとのカードに、規模に応じた大きさのタイルを並べ、資本関係を線で結ぶ
-import { esc, formatValue } from '../util.js';
-import { RELATION_TYPES } from '../data.js';
+import { esc, formatValue } from '../util.js?v=20261124-brands';
+import { RELATION_TYPES } from '../data.js?v=20261124-brands';
 
 /** sqrt(値 / 最大値) でタイルの大きさの段階を決める（面積がおおむね規模に比例） */
 function sizeLevel(v, max, scale = 1) {
