@@ -492,27 +492,33 @@
       "group": "direct",
       "region": "jp",
       "country": "日本",
-      "fy": "2024年3月期",
+      "fy": "2025年12月期",
       "tagline": "無添加化粧品とサプリ。2024年にキリン傘下へ",
       "description": "無添加化粧品と健康食品（サプリメント）が2本柱。2024年9月にキリンHDの連結子会社となり、2025年3月に完全子会社化。",
       "metrics": {
         "revenue": {
-          "value": 1109,
-          "note": "化粧品＋健康食品（上場時の最終通期実績）"
-        },
-        "op": 126
+          "value": 1126,
+          "note": "キリン連結開示のFANCL。化粧品・サプリメント・その他を含む。2024年3月期とは決算期・開示範囲が異なる。"
+        }
       },
       "brands": [
         "ファンケル",
         "アテニア"
       ],
       "points": [
-        "キリンの「ヘルスサイエンス」強化の中核として買収された"
+        "キリンの「ヘルスサイエンス」強化の中核として買収された",
+        "2026年1〜9月は増収・事業減益。概要の買収比較で経緯と出典を確認できる"
       ],
       "url": "https://www.fancl.co.jp/",
       "tags": [
         "スキンケア",
         "通販"
+      ],
+      "facts": [
+        {
+          "label": "事業利益（2025年12月期）",
+          "value": "96億円。買収時の資産評価に伴う償却費を含む。営業利益とは定義が異なる。"
+        }
       ]
     },
     {
@@ -521,15 +527,14 @@
       "group": "direct",
       "region": "jp",
       "country": "日本",
-      "fy": "2022年7月期",
+      "fy": "2025年12月期",
       "tagline": "通販大手。2023年にオリックス傘下へ",
       "description": "化粧品と健康食品の通販大手。社名は創業時の「大学翻訳センター」の略で、翻訳会社から出発した。創業者から株式を取得したオリックスの傘下に入った。",
       "metrics": {
         "revenue": {
-          "value": 905,
-          "note": "買収前の最終開示（営業利益率18.4%）"
-        },
-        "op": 167
+          "value": 996.03,
+          "note": "連結。化粧品・健康食品等を含む。買収前の2022年7月期単体売上とは単純比較できない。"
+        }
       },
       "brands": [
         "DHC 薬用ディープクレンジングオイル",
@@ -539,7 +544,12 @@
         "スキンケア",
         "通販",
         "異業種出身"
-      ]
+      ],
+      "points": [
+        "2025年12月期の営業利益は、今回確認した公開資料では未確認",
+        "2025年10月、主力のオリーブ系スキンケアを刷新"
+      ],
+      "url": "https://dhc-corporate.co.jp/"
     },
     {
       "id": "saishunkan",
@@ -1617,7 +1627,7 @@
       "region": "overseas",
       "country": "米国",
       "tagline": "コーセーが2014年に買収",
-      "description": "米国のメイクアップブランド。コーセーの米州事業の柱。",
+      "description": "米国のメイクアップブランド。旧コーセー（現コーセーHD）が2014年に事業会社Tarte, Inc.を子会社化。当初取得比率は93.5%、2025年末時点の議決権所有割合は100.0%。",
       "tags": [
         "メイク"
       ]
@@ -2112,7 +2122,8 @@
     "売上高・営業利益は各社の直近の通期決算（決算期は会社ごとに異なる）。非上場企業は採用情報などの公表値。",
     "海外企業は 1ドル=150円・1ユーロ=170円・100ウォン=10.5円・1元=21円 で円に換算した概算です。",
     "花王・P&G・ユニリーバ・LVMH・LG生活健康・シャネルは化粧品関連の部門の数値です。",
-    "数値のない会社は点線の小さいタイルで表示しています。"
+    "数値のない会社は点線の小さいタイルで表示しています。",
+    "買収比較とファンケル・DHCの通期売上は2026年11月24日に確認。買収比較内の2026年1〜9月実績は、年間売上を比べるランキングには使用していない。両社の営業利益は現在の開示と比較できる値を確認できず空欄。"
   ],
   "sources": [
     {
@@ -2210,6 +2221,22 @@
     {
       "title": "薬事日報：ポーラ文化研究所「化粧行動・意識に関する実態調査 2015〜2025」",
       "url": "https://www.yakuji.co.jp/entry128101.html"
+    },
+    {
+      "title": "キリン：2025年度決算説明資料 p.13",
+      "url": "https://pdf.irpocket.com/C2503/YpwX/LAce/DA8k.pdf#page=13"
+    },
+    {
+      "title": "DHC：会社概要・2025年12月期売上",
+      "url": "https://dhc-corporate.co.jp/company/profile/"
+    },
+    {
+      "title": "KOSÉ REPORT 2026：グループ会社一覧 p.81（PDF p.4）",
+      "url": "https://koseholdings.co.jp/en/sustainability/report/report2026/pdf/report2026-Data.pdf#page=4"
+    },
+    {
+      "title": "コーセーHD：2026年3Q決算説明資料 p.8–14・30–31",
+      "url": "https://contents.xj-storage.jp/xcontents/AS02128/71f50cef/ae35/4277/9823/0acf262121e1/20261109162028959s.pdf"
     }
   ],
   "tagGroups": [
@@ -2286,6 +2313,327 @@
       "tag": "異業種出身"
     }
   ],
+  "acquisitionCases": {
+    "title": "買収で何を手に入れ、その後どう動いた？",
+    "updated": "2026-11-24",
+    "intro": "キリン×ファンケル、オリックス×DHC、コーセーHD×tarteを、同じ4つの問いで比較します。各社の発表と決算資料を基に、買収時の狙い、実行したこと、業績、読み取りを分けました。数字の期間・事業範囲は事例ごとに異なり、化粧品以外の健康食品などを含む場合があります。",
+    "cases": [
+      {
+        "id": "kirin_fancl",
+        "title": "キリン × ファンケル",
+        "kind": "研究・素材と顧客接点を組み合わせる",
+        "fields": [
+          {
+            "label": "買収で得たいもの",
+            "text": "キリンの発酵・免疫研究や素材、ファンケルの通販・直営店と商品化力を結ぶ。Blackmoresのアジア・パシフィック販路も生かし、化粧品と健康食品を伸ばす。",
+            "sources": [
+              {
+                "title": "キリン：2024年の買収方針",
+                "url": "https://www.kirinholdings.com/jp/newsroom/release/2024/0614_01.html"
+              }
+            ]
+          },
+          {
+            "label": "実際に動いたこと",
+            "text": "2026年7月に錠剤設計AIの共同開発を発表。9月にはBlackmoresが中国でファンケルのサプリメント販売を開始した。",
+            "sources": [
+              {
+                "title": "キリン：錠剤設計AIの共同開発（2026年7月）",
+                "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/0708_02.html"
+              },
+              {
+                "title": "キリン：2026年3Q決算説明資料 p.9",
+                "url": "https://pdf.irpocket.com/C2503/xoA3/DnNg/B0GN/jyu0.pdf#page=9"
+              }
+            ]
+          },
+          {
+            "label": "業績で確認できること",
+            "text": "2026年1〜9月のFANCL売上収益は921億円（前年同期比11.1%増）、事業利益は78億円（5.3%減）。健康食品等を含み、利益は買収時の資産評価に伴う償却費を含む。",
+            "sources": [
+              {
+                "title": "キリン：2026年3Q決算説明資料 p.9",
+                "url": "https://pdf.irpocket.com/C2503/xoA3/DnNg/B0GN/jyu0.pdf#page=9"
+              }
+            ]
+          },
+          {
+            "label": "読み取り（考察）",
+            "text": "共同研究と販路の共有は具体化している。一方、増収には海外販売の自社化による収益の取り込みも含み、広告投資増で減益。売上の伸びだけでは買収の成功を判断できない。",
+            "sources": [
+              {
+                "title": "キリン：2026年3Q決算説明資料 p.9",
+                "url": "https://pdf.irpocket.com/C2503/xoA3/DnNg/B0GN/jyu0.pdf#page=9"
+              }
+            ]
+          }
+        ],
+        "timeline": [
+          {
+            "date": "2019年",
+            "text": "約33%出資し、資本業務提携。完全子会社化より前から協業していた。",
+            "sources": [
+              {
+                "title": "キリン：2024年の買収方針",
+                "url": "https://www.kirinholdings.com/jp/newsroom/release/2024/0614_01.html"
+              }
+            ]
+          },
+          {
+            "date": "2024年9月・2025年3月",
+            "text": "2024年9月に連結子会社化し、2025年3月に完全子会社化。TOB成立と完全子会社化は別の時点。",
+            "sources": [
+              {
+                "title": "キリン：グループの沿革",
+                "url": "https://www.kirinholdings.com/jp/company/history/2020/"
+              }
+            ]
+          },
+          {
+            "date": "2026年4月",
+            "text": "海外ヘルスサイエンス事業の一体運営を進めるKirin Health Science Internationalを設立。",
+            "sources": [
+              {
+                "title": "キリン：グループの沿革",
+                "url": "https://www.kirinholdings.com/jp/company/history/2020/"
+              },
+              {
+                "title": "キリン：海外事業統括会社の設立方針",
+                "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/0213_02.html"
+              }
+            ]
+          },
+          {
+            "date": "2026年7月・9月",
+            "text": "錠剤設計AIの共同開発を発表し、中国でファンケルサプリメントの販売を開始。研究と海外販売で協業を実行。",
+            "sources": [
+              {
+                "title": "キリン：錠剤設計AIの共同開発（2026年7月）",
+                "url": "https://www.kirinholdings.com/jp/newsroom/release/2026/0708_02.html"
+              },
+              {
+                "title": "キリン：2026年3Q決算説明資料 p.9",
+                "url": "https://pdf.irpocket.com/C2503/xoA3/DnNg/B0GN/jyu0.pdf#page=9"
+              }
+            ]
+          }
+        ],
+        "unknowns": [
+          "共同研究や共同販路が、それぞれ何億円の追加利益を生んだかは、確認資料から切り分けられない。",
+          "錠剤設計AIの開発期間短縮日数や利益への寄与額は、この発表では示されていない。",
+          "2019年からの協業と、完全子会社化によって新たに生まれた効果を分けて見る必要がある。"
+        ]
+      },
+      {
+        "id": "orix_dhc",
+        "title": "オリックス × DHC",
+        "kind": "事業承継と組織・開発体制の見直し",
+        "fields": [
+          {
+            "label": "買収で得たいもの",
+            "text": "化粧品・健康食品の顧客基盤と、通販・直営店・ドラッグストアなどの販売網。創業者からの事業承継を支え、経営管理と法令順守の体制を強くする狙いもある。",
+            "sources": [
+              {
+                "title": "オリックス：DHC株式取得（2023年1月）",
+                "url": "https://www.orix.co.jp/grp/company/newsroom/newsrelease/pdf/230131_ORIXJ.pdf"
+              }
+            ]
+          },
+          {
+            "label": "実際に動いたこと",
+            "text": "2023年2月に全社改革「Project Bright」を開始したと経営陣が説明。開発・生産管理などを見直し、2025年10月には主力のオリーブ系スキンケアを刷新した。",
+            "sources": [
+              {
+                "title": "オリックス：DHCの経営陣インタビュー（2023年11月）",
+                "url": "https://www.orix.co.jp/grp/move_on/entry/2023/11/15/100000"
+              },
+              {
+                "title": "DHC：オリーブウェル発売発表（2025年9月）",
+                "url": "https://top.dhc.co.jp/contents/guide/newsrelease/pdf/250909-01.pdf"
+              }
+            ]
+          },
+          {
+            "label": "業績で確認できること",
+            "text": "2025年12月期の連結売上高は996.03億円。公式会社概要の掲載値で、今回の確認資料では買収による利益の増加額は分離されていない。",
+            "sources": [
+              {
+                "title": "DHC：会社概要・2025年12月期売上",
+                "url": "https://dhc-corporate.co.jp/company/profile/"
+              }
+            ]
+          },
+          {
+            "label": "読み取り（考察）",
+            "text": "組織改革と商品刷新の実行までは確認できる。ただし、買収前の2022年7月期は単体、現在値は連結で対象も異なるため、2つの売上から買収後の成長率は計算しない。",
+            "sources": [
+              {
+                "title": "オリックス：DHC株式取得（2023年1月）",
+                "url": "https://www.orix.co.jp/grp/company/newsroom/newsrelease/pdf/230131_ORIXJ.pdf"
+              },
+              {
+                "title": "DHC：会社概要・2025年12月期売上",
+                "url": "https://dhc-corporate.co.jp/company/profile/"
+              }
+            ]
+          }
+        ],
+        "timeline": [
+          {
+            "date": "2023年1月31日",
+            "text": "議決権91.1%を取得し子会社化したと発表。当時の約3,000億円は、100%取得時の概算額として示されていた。",
+            "sources": [
+              {
+                "title": "オリックス：DHC株式取得（2023年1月）",
+                "url": "https://www.orix.co.jp/grp/company/newsroom/newsrelease/pdf/230131_ORIXJ.pdf"
+              }
+            ]
+          },
+          {
+            "date": "2023年2月",
+            "text": "全社横断のProject Brightを開始。2023年11月の公式インタビューでは、経営管理・生産管理・開発プロセスの見直しを説明している。",
+            "sources": [
+              {
+                "title": "オリックス：DHCの経営陣インタビュー（2023年11月）",
+                "url": "https://www.orix.co.jp/grp/move_on/entry/2023/11/15/100000"
+              }
+            ]
+          },
+          {
+            "date": "2025年3月期の開示",
+            "text": "オリックスの年次報告書（20-F）はDHCを完全子会社、取得対価を3,000億円と記載。取得時の発表と後年の会計開示を分けて読む。",
+            "sources": [
+              {
+                "title": "オリックス：2025年3月期20-F、F-43（PDF p.245）",
+                "url": "https://www.orix.co.jp/grp/pdf/company/ir/library/20f/2025_4QE.pdf#page=245"
+              }
+            ]
+          },
+          {
+            "date": "2025年10月8日",
+            "text": "「オリーブすべすべシリーズ」を「オリーブウェルシリーズ」に刷新。一部商品に独自成分のオリーブ発酵液を配合。",
+            "sources": [
+              {
+                "title": "DHC：オリーブウェル発売発表（2025年9月）",
+                "url": "https://top.dhc.co.jp/contents/guide/newsrelease/pdf/250909-01.pdf"
+              }
+            ]
+          }
+        ],
+        "unknowns": [
+          "組織改革や商品刷新のうち、買収が直接生んだ売上・利益の増分は分離できない。",
+          "買収時に掲げた投資収益率の目標が達成されたかは、確認資料では分からない。",
+          "商品刷新が買収だけによって実現したとは断定できない。"
+        ]
+      },
+      {
+        "id": "kose_tarte",
+        "title": "コーセーHD × tarte",
+        "kind": "北米のブランド・販路・顧客を取得",
+        "fields": [
+          {
+            "label": "買収で得たいもの",
+            "text": "アジア中心だった海外事業を北米へ広げる。米国ブランドtarteと、Sephora・ULTA・自社EC・QVCなどの販路、新たな顧客層を獲得する。",
+            "sources": [
+              {
+                "title": "コーセー：Tarte株式取得発表（2014年3月）",
+                "url": "https://koseholdings.co.jp/ja/media/2016/03/20140317.pdf"
+              }
+            ]
+          },
+          {
+            "label": "実際に動いたこと",
+            "text": "2019年にMaison KOSÉで約200品を日本に導入。2026年には北米のSephoraで主力商品の展開を広げ、TikTokや欧州の販促も売上拡大に寄与した。",
+            "sources": [
+              {
+                "title": "コーセー：tarte日本導入（2019年12月）",
+                "url": "https://koseholdings.co.jp/ja/media/2019/12/20191217.pdf"
+              },
+              {
+                "title": "コーセーHD：2026年3Q決算説明資料 p.8–14・30–31",
+                "url": "https://contents.xj-storage.jp/xcontents/AS02128/71f50cef/ae35/4277/9823/0acf262121e1/20261109162028959s.pdf"
+              }
+            ]
+          },
+          {
+            "label": "業績で確認できること",
+            "text": "2026年1〜9月のタルト事業売上は前年同期比11.5%増、現地通貨では4.3%増。累計では販促投資で費用が増加。通期見通しでは、販路構成の変化も利益を下押しする要因としている。",
+            "sources": [
+              {
+                "title": "コーセーHD：2026年3Q決算説明資料 p.8–14・30–31",
+                "url": "https://contents.xj-storage.jp/xcontents/AS02128/71f50cef/ae35/4277/9823/0acf262121e1/20261109162028959s.pdf"
+              }
+            ]
+          },
+          {
+            "label": "読み取り（考察）",
+            "text": "北米の事業基盤を持ち、日本や欧州へ販路を広げた事例。ただし、販路拡大には費用がかかる。直近の増収や為替効果を、そのまま2014年の買収効果とは扱わない。",
+            "sources": [
+              {
+                "title": "コーセー：tarte日本導入（2019年12月）",
+                "url": "https://koseholdings.co.jp/ja/media/2019/12/20191217.pdf"
+              },
+              {
+                "title": "コーセーHD：2026年3Q決算説明資料 p.8–14・30–31",
+                "url": "https://contents.xj-storage.jp/xcontents/AS02128/71f50cef/ae35/4277/9823/0acf262121e1/20261109162028959s.pdf"
+              }
+            ]
+          }
+        ],
+        "timeline": [
+          {
+            "date": "2014年3月発表・4月子会社化",
+            "text": "旧コーセー（現コーセーHD）がTarte, Inc.の93.5%を取得。tarteはブランド名、買収した対象はその事業会社。",
+            "sources": [
+              {
+                "title": "コーセー：Tarte株式取得発表（2014年3月）",
+                "url": "https://koseholdings.co.jp/ja/media/2016/03/20140317.pdf"
+              },
+              {
+                "title": "コーセーHD：グループの沿革",
+                "url": "https://koseholdings.co.jp/ja/kose/info/history/"
+              }
+            ]
+          },
+          {
+            "date": "2019年12月17日",
+            "text": "銀座のMaison KOSÉで約200アイテムをそろえ、日本での販売を開始。グループ側の顧客接点を日本展開に使った。",
+            "sources": [
+              {
+                "title": "コーセー：tarte日本導入（2019年12月）",
+                "url": "https://koseholdings.co.jp/ja/media/2019/12/20191217.pdf"
+              }
+            ]
+          },
+          {
+            "date": "2025年12月末時点",
+            "text": "グループ会社一覧でTarte, Inc.の議決権所有割合は100.0%。当初の93.5%を現在の比率として表示しない。",
+            "sources": [
+              {
+                "title": "KOSÉ REPORT 2026：グループ会社一覧 p.81（PDF p.4）",
+                "url": "https://koseholdings.co.jp/en/sustainability/report/report2026/pdf/report2026-Data.pdf#page=4"
+              }
+            ]
+          },
+          {
+            "date": "2026年1月1日",
+            "text": "旧コーセーは純粋持株会社へ移行し、コーセーホールディングスへ商号変更。",
+            "sources": [
+              {
+                "title": "コーセーHD：よくある質問",
+                "url": "https://koseholdings.co.jp/ja/ir/faq/"
+              }
+            ]
+          }
+        ],
+        "unknowns": [
+          "買収後の成長のうち、コーセーの技術や販売支援による増分だけを切り分けることはできない。",
+          "残りの株式を追加取得した時期・価格は、今回の確認資料では確定していない。",
+          "2014年の取得価格だけから、追加投資も含めた投資回収率は算定できない。"
+        ]
+      }
+    ]
+  },
   "network": {
     "title": "化粧品の会社とブランドのつながり",
     "lead": "どこがどのブランドを持ち、競合どうしがどんな場面で協力する？ 買収・合弁・共同研究・製品づくりを、発表資料からたどります。",
@@ -2311,7 +2659,7 @@
       },
       {
         "id": "kose",
-        "label": "コーセー"
+        "label": "コーセーHD"
       },
       {
         "id": "tokiwa",
@@ -2454,11 +2802,15 @@
         "type": "deal",
         "date": "2023-01",
         "title": "オリックスがDHCを買収",
-        "text": "創業者から株式を譲り受け、事業承継を支援。オリックスはDHCの健康食品や化粧品の事業を成長させることを目指した。",
+        "text": "2023年1月31日に議決権91.1%を取得し子会社化したと発表。創業者からの事業承継と、経営管理・法令順守の体制強化、化粧品・健康食品の成長を目指した。後年の会計開示では完全子会社として記載されている。",
         "status": "買収完了",
         "rivals": false,
         "rivalNote": "",
         "source": [
+          {
+            "title": "オリックス：DHC株式取得（2023年1月）",
+            "url": "https://www.orix.co.jp/grp/company/newsroom/newsrelease/pdf/230131_ORIXJ.pdf"
+          },
           {
             "title": "オリックス：DHCへの出資と事業承継",
             "url": "https://www.orix.co.jp/grp/pdf/company/ir/library/annual_report/AR2023J.pdf"
@@ -2466,6 +2818,10 @@
           {
             "title": "オリックス：DHCの成長支援",
             "url": "https://www.orix.co.jp/grp/move_on/entry/2023/11/15/100000"
+          },
+          {
+            "title": "オリックス：2025年3月期20-F、F-43",
+            "url": "https://www.orix.co.jp/grp/pdf/company/ir/library/20f/2025_4QE.pdf#page=245"
           }
         ]
       },
@@ -2476,7 +2832,7 @@
         "type": "deal",
         "date": "2014-04",
         "title": "コーセーが米国のtarteを傘下に",
-        "text": "コーセーは北米市場での事業拡大を狙い、メイクブランドtarteを展開する会社を子会社化。tarteはブランド名であり、線は事業会社の買収を表す。",
+        "text": "旧コーセー（現コーセーHD）は北米市場での事業拡大を狙い、Tarte, Inc.を子会社化。当初取得比率は93.5%、2025年末時点の議決権所有割合は100.0%。tarteはブランド名で、線は事業会社の買収を表す。",
         "status": "買収完了",
         "rivals": false,
         "rivalNote": "",
@@ -2488,6 +2844,10 @@
           {
             "title": "コーセー：グループ会社",
             "url": "https://koseholdings.co.jp/ja/info/bases/"
+          },
+          {
+            "title": "KOSÉ REPORT 2026：グループ会社一覧 p.81（PDF p.4）",
+            "url": "https://koseholdings.co.jp/en/sustainability/report/report2026/pdf/report2026-Data.pdf#page=4"
           }
         ]
       },

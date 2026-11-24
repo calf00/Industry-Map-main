@@ -1,5 +1,6 @@
 // 概要表示：市場規模・トレンド・年表・出典
 import { esc, formatValue } from '../util.js';
+import { acquisitionCasesHtml } from './acquisition-cases.js';
 
 function safeUrl(u) {
   return /^https?:\/\//i.test(u || '') ? u : '';
@@ -25,6 +26,8 @@ export function renderOverview(root, ctx) {
   if (sector.summary) {
     parts.push(`<section class="card span2"><h2>ざっくり言うと</h2>${sector.summary.split(/\n+/).map((p) => `<p>${esc(p)}</p>`).join('')}</section>`);
   }
+
+  if (sector.acquisitionCases) parts.push(acquisitionCasesHtml(sector.acquisitionCases, sector.id));
 
   for (const x of sector.insights) {
     parts.push(`<section class="card span2 insight">
