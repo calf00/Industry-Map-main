@@ -1,5 +1,13 @@
 # 引き継ぎメモ（Claude Code → Codex）
 
+## 2026-11-26 追記：アイコンと情報の見せ方
+
+- 14業界のSVGを `assets/js/icons.js` に登録。業界一覧・見出し・検索結果で同じ図を使う。新しい業界は `SECTORS` に登録しない場合も共通の図で表示できる。既存JSONの `icon` は読み込まない。
+- ヘッダーの「探す」から横断検索を開く。検索はネイティブのダイアログで扱い、Escapeで閉じて「探す」に戻れる。業界一覧はリンク、表示切替は左右キーで移動できるタブ。
+- 共通の業界見出しを短くし、業界の説明と市場規模は概要にまとめた。ブランドは検索欄のすぐ下に件数と解除ボタンを置き、会社ごとにブランドをまとめる。ランキングは長い社名を折り返し、つながりの絞り込みは複数行に並べる。
+- CSSとES moduleの版番号は `20261126-ux`。
+
+
 ## 2026-11-24 追記：デザインの整理
 
 - ヘッダーを濃紺、本文を白・淡いグレーにし、ピンクは業界の選択や検索の一致を示すアクセントに使用。角丸・影・タブを整理し、本文と主な見出しを読みやすくした。
@@ -90,7 +98,7 @@ assets/js/views/network.js つながり（円形のネットワーク図）
 assets/js/sheet.js         企業の詳細シート（スマホのドラッグもここ）
 assets/js/drawer.js        業界一覧と横断検索
 assets/js/util.js          共通の小道具（esc, formatValue, normalizeText, PALETTE など）
-data/index.json            業界の一覧（id・name・kana・icon・category・description）
+data/index.json            業界の一覧（id・name・kana・category・description）
 data/sectors/<id>.json     業界ごとのデータ
 data/_template.json        新しい業界のひな形
 tools/smoke-test.mjs       全業界の画面チェック（Playwright）
@@ -218,7 +226,7 @@ node tools/smoke-test.mjs          # BASE_URL で別のURLも指定できる
 
 1. 一次情報で調べる（売上・営業利益・決算期・主なブランド・最近の買収や提携・市場規模と出典）。
 2. `data/_template.json` をもとに `data/sectors/<id>.json` を作る。
-3. `data/index.json` の `sectors` に `id`・`name`・`kana`・`icon`・`category`・`description` を足す（並び順は自動）。
+3. `data/index.json` の `sectors` に `id`・`name`・`kana`・`category`・`description` を足す（並び順は自動）。
 4. `README.md` の「収録」の行に業界名を足す。
 5. `python3 -m http.server` で開いて、スマホ幅・PC幅、日本/世界、各タブを確認。「データのチェック」が空か見る。できれば `node tools/smoke-test.mjs`。
 6. `main` にコミットして push。オーナーには、何を足したか・わかったこと・注意点（概算や空欄）を短く報告する。

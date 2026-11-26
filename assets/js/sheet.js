@@ -1,6 +1,7 @@
 // 企業の詳細パネル（スマホ：下から出るシート / PC：右側パネル）
-import { esc, formatValue, isDesktop } from './util.js?v=20261124-design';
-import { RELATION_TYPES } from './data.js?v=20261124-design';
+import { esc, formatValue, isDesktop } from './util.js?v=20261126-ux';
+import { icon } from './icons.js?v=20261126-ux';
+import { RELATION_TYPES } from './data.js?v=20261126-ux';
 
 const sheet = document.getElementById('sheet');
 let handlers = { onClose: () => {}, onSelect: () => {}, onNetwork: () => {}, onAcquisition: () => {}, onBrands: () => {} };
@@ -65,7 +66,7 @@ export function renderSheet(sector, c) {
           ${sub ? `<div class="sheet-sub">${esc(sub)}</div>` : ''}
         </div>
         <button type="button" class="icon-btn" data-close aria-label="閉じる">
-          <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          ${icon('close')}
         </button>
       </div>
     </div>

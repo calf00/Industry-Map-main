@@ -1,6 +1,6 @@
 // 概要表示：市場規模・トレンド・年表・出典
-import { esc, formatValue } from '../util.js?v=20261124-design';
-import { acquisitionCasesHtml } from './acquisition-cases.js?v=20261124-design';
+import { esc, formatValue } from '../util.js?v=20261126-ux';
+import { acquisitionCasesHtml } from './acquisition-cases.js?v=20261126-ux';
 
 function safeUrl(u) {
   return /^https?:\/\//i.test(u || '') ? u : '';
@@ -27,6 +27,14 @@ export function renderOverview(root, ctx) {
     parts.push(`<section class="card span2"><h2>ざっくり言うと</h2>${sector.summary.split(/\n+/).map((p) => `<p>${esc(p)}</p>`).join('')}</section>`);
   }
 
+  const markets = [];
+  if (sector.market.jp) markets.push(marketItemHtml(sector.market.jp, false));
+  if (sector.market.global && showWorld) markets.push(marketItemHtml(sector.market.global, true));
+  if (markets.length) {
+    const hint = sector.market.global && !showWorld ? '<p class="small muted" style="margin-top:8px">右上を「世界」にすると世界市場も表示します。</p>' : '';
+    parts.push(`<section class="card span2"><h2>市場規模</h2><div class="market">${markets.join('')}</div>${hint}</section>`);
+  }
+
   if (sector.brandFamilies) parts.push(`<section class="card span2"><h2>ブランドから系列をたどる</h2><p>KATE・アテニア・THREEなど、ブランド名から展開会社と企業グループを探せます。</p><p><a class="acq-net-link" href="#/${esc(encodeURIComponent(sector.id))}/brands">ブランドとグループを見る</a></p></section>`);
 
   if (sector.acquisitionCases) parts.push(acquisitionCasesHtml(sector.acquisitionCases, sector.id));
@@ -41,14 +49,6 @@ export function renderOverview(root, ctx) {
       ${x.conclusion ? `<p class="ins-concl"><b>いまの結論</b>${esc(x.conclusion)}</p>` : ''}
       ${x.tag ? `<button type="button" class="ins-tag" data-tag="${esc(x.tag)}">マップで「#${esc(x.tag)}」を光らせる →</button>` : ''}
     </section>`);
-  }
-
-  const markets = [];
-  if (sector.market.jp) markets.push(marketItemHtml(sector.market.jp, false));
-  if (sector.market.global && showWorld) markets.push(marketItemHtml(sector.market.global, true));
-  if (markets.length) {
-    const hint = sector.market.global && !showWorld ? '<p class="small muted" style="margin-top:8px">右上を「世界」にすると世界市場も表示します。</p>' : '';
-    parts.push(`<section class="card span2"><h2>市場規模</h2><div class="market">${markets.join('')}</div>${hint}</section>`);
   }
 
   for (const b of sector.breakdowns) {

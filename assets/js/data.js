@@ -1,5 +1,5 @@
 // データ読み込み（data/index.json と data/sectors/*.json）
-import { resolveColor } from './util.js?v=20261124-design';
+import { resolveColor } from './util.js?v=20261126-ux';
 
 export const RELATION_TYPES = {
   subsidiary: { label: '子会社・傘下', parent: '親会社', child: '子会社・傘下' },
@@ -54,7 +54,6 @@ export function loadIndex() {
         .map((s) => ({
           id: String(s.id),
           name: s.name || s.id,
-          icon: s.icon || '📁',
           category: s.category || 'その他',
           description: s.description || '',
           kana: typeof s.kana === 'string' ? s.kana : '',
@@ -229,7 +228,6 @@ export function normalizeSector(raw, meta) {
   return {
     id: meta.id,
     name: raw.name || meta.name,
-    icon: raw.icon || meta.icon,
     category: raw.category || meta.category,
     updated: raw.updated || '',
     summary: raw.summary || '',

@@ -1,6 +1,6 @@
 // つながり表示：会社を円の上に並べ、提携・特許・訴訟・出資などを線で結ぶ
-import { esc } from '../util.js?v=20261124-design';
-import { NET_TYPES } from '../data.js?v=20261124-design';
+import { esc } from '../util.js?v=20261126-ux';
+import { NET_TYPES } from '../data.js?v=20261126-ux';
 
 const R = 116; // 会社を並べる円の半径（viewBox の単位）
 const HALF = 200; // viewBox の半分の大きさ

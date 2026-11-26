@@ -14,19 +14,19 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="業界地図">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261124-design">
-  <link rel="stylesheet" href="assets/css/brand-families.css?v=20261124-design">
-  <script type="module" src="assets/js/main.js?v=20261124-design"></script>
+  <link rel="stylesheet" href="assets/css/style.css?v=20261126-ux">
+  <link rel="stylesheet" href="assets/css/brand-families.css?v=20261126-ux">
+  <script type="module" src="assets/js/main.js?v=20261126-ux"></script>
 </head>
 <body>
   <header class="appbar">
-    <button class="icon-btn" id="menuBtn" type="button" aria-label="業界の一覧と検索" aria-controls="drawer" aria-expanded="false">
-      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
     <a class="brand" href="./" aria-label="業界地図 トップ">
       <img src="assets/icons/icon.svg" alt="" width="26" height="26">
       <span>業界地図</span>
     </a>
+    <button class="app-search" id="menuBtn" type="button" aria-label="業界・企業を探す" aria-haspopup="dialog" aria-controls="drawer" aria-expanded="false">
+      <span><span class="app-search-prefix">業界・企業を</span>探す</span>
+    </button>
     <div class="region" role="group" aria-label="表示する地域">
       <button type="button" data-region="jp" aria-pressed="true">日本</button>
       <button type="button" data-region="world" aria-pressed="false">世界</button>
@@ -36,9 +36,9 @@
   <nav class="tabs" id="sectorTabs" aria-label="業界"></nav>
 
   <main id="main" class="main">
-    <section id="hero" class="hero" aria-live="polite"></section>
+    <section id="hero" class="hero"></section>
     <div id="viewSwitch" class="seg seg-views" role="tablist" aria-label="表示の切り替え"></div>
-    <section id="view" class="view"></section>
+    <section id="view" class="view" role="tabpanel" tabindex="0" hidden></section>
     <footer class="foot">
       数値は各社の決算資料・報道をもとにした概算です。最新の情報は各社IRでご確認ください。
     </footer>
@@ -46,24 +46,22 @@
 
   <aside class="sheet" id="sheet" aria-hidden="true" aria-labelledby="sheetTitle" role="dialog"></aside>
 
-  <div class="backdrop backdrop-drawer" id="drawerBackdrop" hidden></div>
-  <aside class="drawer" id="drawer" aria-hidden="true" aria-label="業界の一覧">
+  <dialog class="drawer" id="drawer" aria-labelledby="drawerTitle">
     <div class="drawer-head">
-      <h2>業界をさがす</h2>
-      <button class="icon-btn" type="button" id="drawerClose" aria-label="閉じる">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
+      <h2 id="drawerTitle">業界・企業を探す</h2>
+      <button class="icon-btn" type="button" id="drawerClose" aria-label="検索を閉じる" autofocus></button>
     </div>
     <label class="search">
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      <input id="searchInput" type="search" placeholder="業界・企業・ブランド名で検索" autocomplete="off" enterkeyhint="search">
+      <input id="searchInput" type="search" aria-label="業界・企業・ブランド名" placeholder="業界・企業・ブランド名" autocomplete="off" enterkeyhint="search">
     </label>
+    <p id="drawerStatus" class="sr-only" role="status"></p>
     <div id="drawerBody" class="drawer-body"></div>
-  </aside>
+  </dialog>
 
   <script>
     // HTMLファイルを直接開いた場合（file://）はデータを読み込めないので案内を出す
     if (location.protocol === 'file:') {
+      document.getElementById('view').hidden = false;
       document.getElementById('view').innerHTML =
         '<div class="error"><b>データを表示できませんでした</b>HTMLファイルを直接開くとデータを読み込めません。' +
         'GitHub Pages で開くか、このフォルダで <code>python3 -m http.server</code> を実行して ' +

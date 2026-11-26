@@ -1,5 +1,6 @@
 // ブランド名から、その運営会社と親会社をたどる。
-import { esc, normalizeText } from '../util.js?v=20261124-design';
+import { esc, normalizeText } from '../util.js?v=20261126-ux';
+import { icon } from '../icons.js?v=20261126-ux';
 
 function safeUrl(value) {
   if (typeof value !== 'string' || !/^https?:\/\//i.test(value.trim())) return '';
@@ -69,16 +70,12 @@ export function renderBrandFamilies(root, ctx) {
   const fieldId = `bf-${sector.id}`;
   root.innerHTML = `<section class="bf-view" aria-labelledby="${esc(fieldId)}-title">
     <header class="bf-intro">
-      <p class="bf-eyebrow">ブランドと会社の関係</p>
       <h2 id="${esc(fieldId)}-title">${esc(data.title || 'このブランド、どのグループ？')}</h2>
-      ${data.intro ? `<p class="bf-description">${esc(data.intro)}</p>` : ''}
-      ${data.updated ? `<p class="bf-updated">調査・確認：<time>${esc(data.updated)}</time></p>` : ''}
-      ${data.note ? `<details class="bf-reading"><summary>図の読み方</summary><p>${esc(data.note)}</p></details>` : ''}
     </header>
     <div class="bf-tools">
       <div class="bf-search-field">
         <label for="${esc(fieldId)}-query">ブランド・会社を検索</label>
-        <input id="${esc(fieldId)}-query" class="bf-search" type="search" value="${esc(saved.query)}" placeholder="ブランド名や会社名を入力" autocomplete="off" spellcheck="false" aria-controls="${esc(fieldId)}-results">
+        <div class="bf-search-control">${icon('search')}<input id="${esc(fieldId)}-query" class="bf-search" type="search" value="${esc(saved.query)}" placeholder="ブランド名や会社名を入力" autocomplete="off" spellcheck="false" aria-controls="${esc(fieldId)}-results"></div>
         <div class="bf-examples"><span>たとえば</span>${['KATE', 'アテニア', 'THREE'].map((name) => `<button type="button" data-bf-example="${esc(name)}">${esc(name)}</button>`).join('')}</div>
       </div>
       <div class="bf-family-field">
@@ -89,7 +86,18 @@ export function renderBrandFamilies(root, ctx) {
         </select>
       </div>
     </div>
-    <p class="bf-count" role="status" aria-live="polite" aria-atomic="true"></p>
+    <div class="bf-result-bar">
+      <p class="bf-count" role="status" aria-live="polite" aria-atomic="true"></p>
+      <button type="button" class="bf-clear" data-bf-clear hidden>${icon('reset')}条件をクリア</button>
+      ${data.intro || data.note || data.updated ? `<details class="bf-reading">
+        <summary>図の読み方${icon('chevronDown')}</summary>
+        <div>
+          ${data.intro ? `<p class="bf-description">${esc(data.intro)}</p>` : ''}
+          ${data.note ? `<p>${esc(data.note)}</p>` : ''}
+          ${data.updated ? `<p class="bf-updated">確認日：<time>${esc(data.updated)}</time></p>` : ''}
+        </div>
+      </details>` : ''}
+    </div>
     <div class="bf-results" id="${esc(fieldId)}-results"></div>
   </section>`;
 
@@ -98,6 +106,7 @@ export function renderBrandFamilies(root, ctx) {
   const familyFilter = view.querySelector('.bf-family-filter');
   const results = view.querySelector('.bf-results');
   const count = view.querySelector('.bf-count');
+  const clear = view.querySelector('.bf-clear');
 
   function selectFamilies(query) {
     return families.filter((family) => !saved.family || family.id === saved.family).map((family) => {
@@ -117,10 +126,10 @@ export function renderBrandFamilies(root, ctx) {
   }
 
   function brandHtml(brand, query) {
-    const body = `<span class="bf-brand-kind">ブランド</span><span class="bf-brand-name">${highlight(brand.name, query)}</span>${brand.note ? `<span class="bf-brand-note">${esc(brand.note)}</span>` : ''}`;
+    const body = `<span class="bf-brand-name">${highlight(brand.name, query)}</span>${brand.note ? `<span class="bf-brand-note">${esc(brand.note)}</span>` : ''}`;
     const classes = `bf-brand${brand.matched ? ' is-match' : ''}`;
     return company(brand.companyId)
-      ? `<button type="button" class="${classes}" data-bf-company="${esc(brand.companyId)}" aria-label="${esc(brand.name)}の詳細">${body}</button>`
+      ? `<button type="button" class="${classes}" data-bf-company="${esc(brand.companyId)}" aria-label="${esc(brand.name)}（ブランド）の詳細">${body}</button>`
       : `<span class="${classes}">${body}</span>`;
   }
 
@@ -130,11 +139,11 @@ export function renderBrandFamilies(root, ctx) {
     const label = highlight(branch.label, query);
     return `<li class="bf-branch${branch.matched ? ' is-match' : ''}">
       <div class="bf-branch-head">
-        <span class="bf-kind">${branch.kind === 'company' || branchCompany ? '会社' : '展開ブランド'}</span>
+        ${branch.kind === 'company' || branchCompany ? '<span class="bf-kind bf-company-kind">会社</span>' : ''}
         <h4>${branchCompany ? `<button type="button" class="bf-company-link" data-bf-company="${esc(branch.companyId)}">${label}</button>` : label}</h4>
       </div>
       ${branch.relation ? `<p class="bf-relation">${esc(branch.relation)}</p>` : ''}
-      ${brands.length ? `<div class="bf-brands">${brands.map((brand) => brandHtml(brand, query)).join('')}</div>` : ''}
+      ${brands.length ? `<p class="bf-brands-label">展開ブランド</p><div class="bf-brands">${brands.map((brand) => brandHtml(brand, query)).join('')}</div>` : ''}
     </li>`;
   }
 
@@ -167,10 +176,11 @@ export function renderBrandFamilies(root, ctx) {
     const query = normalizeText(saved.query);
     const selected = selectFamilies(query);
     const brandCount = selected.reduce((total, family) => total + family.branches.reduce((sum, branch) => sum + (query && !family.matched && !branch.matched ? branch.matchedBrands.length : branch.brands.length), 0), 0);
-    count.textContent = `${selected.length}グループ・${brandCount}ブランドを表示${query ? '（検索結果）' : ''}`;
+    count.textContent = `${selected.length}グループ・${brandCount}ブランド`;
+    clear.hidden = !saved.query && !saved.family;
     results.innerHTML = selected.length
       ? `<div class="bf-grid">${selected.map((family, index) => familyHtml(family, query, index)).join('')}</div>`
-      : `<div class="bf-empty"><h3>該当するブランド・会社が見つかりません</h3><p>別の名前で検索するか、条件をクリアして全体を見てみてください。</p><button type="button" data-bf-clear>条件をクリア</button></div>`;
+      : `<div class="bf-empty"><h3>該当するブランド・会社が見つかりません</h3><p>別の名前で検索するか、上の「条件をクリア」で全体を見てみてください。</p></div>`;
   }
 
   // 結果だけを更新するので、日本語入力中もフォーカスとカーソルを保つ。

@@ -1,5 +1,5 @@
 // 買収時の狙い、確認できた変化、まだ分からないことを事例ごとに比べる。
-import { esc } from '../util.js?v=20261124-design';
+import { esc } from '../util.js?v=20261126-ux';
 
 function safeUrl(value) {
   if (typeof value !== 'string' || !/^https?:\/\//i.test(value.trim())) return '';

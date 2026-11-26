@@ -1,23 +1,24 @@
 // 業界地図 — エントリーポイント
 // URL: #/<業界id>/<map|rank|brands|info|net>/<企業id>（買収比較は info?case=<id>）
-import { $, esc, store } from './util.js?v=20261124-design';
-import { loadIndex, loadSector, visibleCompanies, DataError } from './data.js?v=20261124-design';
-import { renderMap, applyMapSelection, drawLines } from './views/map.js?v=20261124-design';
-import { renderRanking } from './views/ranking.js?v=20261124-design';
-import { renderOverview } from './views/overview.js?v=20261124-design';
-import { renderNetwork, focusNetworkNode } from './views/network.js?v=20261124-design';
-import { renderSupplyChain } from './views/supply-chain.js?v=20261124-design';
-import { renderBrandFamilies } from './views/brand-families.js?v=20261124-design';
-import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js?v=20261124-design';
-import { initDrawer, closeDrawer, isDrawerOpen } from './drawer.js?v=20261124-design';
+import { $, esc, store } from './util.js?v=20261126-ux';
+import { loadIndex, loadSector, visibleCompanies, DataError } from './data.js?v=20261126-ux';
+import { renderMap, applyMapSelection, drawLines } from './views/map.js?v=20261126-ux';
+import { renderRanking } from './views/ranking.js?v=20261126-ux';
+import { renderOverview } from './views/overview.js?v=20261126-ux';
+import { renderNetwork, focusNetworkNode } from './views/network.js?v=20261126-ux';
+import { renderSupplyChain } from './views/supply-chain.js?v=20261126-ux';
+import { renderBrandFamilies } from './views/brand-families.js?v=20261126-ux';
+import { initSheet, renderSheet, openSheet, closeSheet } from './sheet.js?v=20261126-ux';
+import { initDrawer, isDrawerOpen } from './drawer.js?v=20261126-ux';
+import { icon, sectorIcon } from './icons.js?v=20261126-ux';
 
 // when：その業界にデータがあるときだけ出すタブ
 const VIEWS = [
-  { id: 'map', label: 'マップ' },
-  { id: 'rank', label: 'ランキング', when: (s) => !s.supplyChain },
-  { id: 'brands', label: 'ブランド', when: (s) => !!s.brandFamilies },
-  { id: 'info', label: '概要' },
-  { id: 'net', label: 'つながり', when: (s) => !!s.network },
+  { id: 'map', label: 'マップ', icon: 'grid' },
+  { id: 'rank', label: 'ランキング', icon: 'rank', when: (s) => !s.supplyChain },
+  { id: 'brands', label: 'ブランド', icon: 'brands', when: (s) => !!s.brandFamilies },
+  { id: 'info', label: '概要', icon: 'info' },
+  { id: 'net', label: 'つながり', icon: 'network', when: (s) => !!s.network },
 ];
 const viewAvailable = (id, sector) => VIEWS.some((v) => v.id === id && (!v.when || (sector && v.when(sector))));
 
@@ -104,6 +105,8 @@ async function applyRoute() {
       renderTabs(r.sectorId);
       els.hero.innerHTML = '';
       els.viewSwitch.innerHTML = '';
+      els.view.hidden = false;
+      els.view.removeAttribute('aria-labelledby');
       els.view.innerHTML = '<p class="loading">読み込み中…</p>';
       closeSheet();
     }
@@ -177,41 +180,42 @@ function renderRegion() {
   document.querySelectorAll('.region [data-region]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.region === state.region)));
 }
 
+function sectorHref(id) {
+  const view = id === 'aikatsu' ? 'map' : state.view;
+  return buildHash({ sectorId: id, view });
+}
+
 function renderTabs(activeId = state.sectorId) {
-  const html = state.index.sectors
-    .map((s) => `<button type="button" class="tab" role="tab" data-sector="${esc(s.id)}" aria-selected="${s.id === activeId}"><span class="ico" aria-hidden="true">${esc(s.icon)}</span>${esc(s.name)}</button>`)
-    .join('');
-  els.tabs.innerHTML = `${html}<button type="button" class="tab tab-more" data-more aria-label="すべての業界・検索">＋ すべて・検索</button>`;
-  els.tabs.setAttribute('role', 'tablist');
-  const active = els.tabs.querySelector('[aria-selected="true"]');
-  if (active) {
-    const left = active.offsetLeft - (els.tabs.clientWidth - active.offsetWidth) / 2;
-    els.tabs.scrollTo({ left: Math.max(0, left), behavior: 'smooth' });
+  if (!els.tabs.children.length) {
+    els.tabs.innerHTML = state.index.sectors.map((s) => `
+      <a class="tab" data-sector="${esc(s.id)}" href="${esc(sectorHref(s.id))}">${sectorIcon(s.id)}<span>${esc(s.name)}</span></a>
+    `).join('');
+  }
+  const previous = els.tabs.querySelector('[aria-current="page"]');
+  for (const link of els.tabs.children) {
+    link.href = sectorHref(link.dataset.sector);
+    if (link.dataset.sector === activeId) link.setAttribute('aria-current', 'page');
+    else link.removeAttribute('aria-current');
+  }
+  const active = els.tabs.querySelector('[aria-current="page"]');
+  if (active && previous !== active) {
+    const navRect = els.tabs.getBoundingClientRect();
+    const rect = active.getBoundingClientRect();
+    els.tabs.scrollLeft += rect.left - navRect.left - (navRect.width - rect.width) / 2;
   }
 }
 
 function renderHero() {
   const s = state.sector;
-  els.hero.classList.toggle('hero-supply', !!s.supplyChain);
-  const compact = state.view === 'brands';
-  els.hero.classList.toggle('hero-compact', compact);
-  const visible = visibleCompanies(s, state.region);
-  const stats = [];
-  if (s.market.jp) stats.push(statHtml(s.market.jp, false));
-  if (s.market.global && state.region === 'world') stats.push(statHtml(s.market.global, true));
-  if (s.supplyChain) stats.push(`<div class="stat"><span class="stat-k">調査日</span><span class="stat-v">${esc(s.updated)}</span><span class="stat-s">公開情報をもとに調査</span></div>`);
-  else stats.push(`<div class="stat"><span class="stat-k">掲載</span><span class="stat-v">${visible.length}社</span><span class="stat-s">${state.region === 'world' ? '日本＋海外' : '日本のみ'}</span></div>`);
 
   els.hero.innerHTML = `
     <div class="hero-top">
-      <div class="hero-ico" aria-hidden="true">${esc(s.icon)}</div>
+      <div class="hero-ico">${sectorIcon(s.id)}</div>
       <div>
         <div class="hero-cat">${esc(s.category)}</div>
         <h1>${esc(s.name)}</h1>
       </div>
     </div>
-    ${s.summary && !compact ? `<p class="hero-summary">${esc(s.summary.split(/\n+/)[0])}</p>` : ''}
-    ${!compact ? `<div class="stats">${stats.join('')}</div>` : ''}
     ${s.focusWorld && state.region === 'jp' ? worldCallout(s) : ''}`;
 }
 
@@ -224,16 +228,19 @@ function worldCallout(s) {
   </div>`;
 }
 
-function statHtml(m, world) {
-  return `<div class="stat${world ? ' is-world' : ''}"><span class="stat-k">${esc(m.label)}</span><span class="stat-v">${esc(m.value)}</span>${m.period ? `<span class="stat-s">${esc(m.period)}</span>` : ''}</div>`;
-}
-
 function renderViewSwitch() {
   const views = VIEWS.filter((v) => viewAvailable(v.id, state.sector));
   els.viewSwitch.classList.toggle('is-extended', views.length > 4);
-  els.viewSwitch.innerHTML = views.map(
-    (v) => `<button type="button" class="seg-btn" role="tab" data-view="${v.id}" aria-selected="${v.id === state.view}">${v.id === 'map' && state.sector.supplyChain ? 'サプライチェーン' : v.label}</button>`,
-  ).join('');
+  const focused = els.viewSwitch.contains(document.activeElement);
+  els.viewSwitch.innerHTML = views.map((v) => {
+    const selected = v.id === state.view;
+    const supply = v.id === 'map' && state.sector.supplyChain;
+    return `<button type="button" class="seg-btn" id="view-tab-${v.id}" role="tab" data-view="${v.id}" aria-controls="view" aria-selected="${selected}" tabindex="${selected ? 0 : -1}">${icon(supply ? 'layers' : v.icon)}<span>${supply ? 'サプライチェーン' : v.label}</span></button>`;
+  }).join('');
+  els.view.setAttribute('role', 'tabpanel');
+  els.view.setAttribute('aria-labelledby', `view-tab-${state.view}`);
+  els.view.hidden = false;
+  if (focused) els.viewSwitch.querySelector('[aria-selected="true"]').focus({ preventScroll: true });
 }
 
 function viewContext() {
@@ -413,6 +420,7 @@ function renderFatal(e) {
   els.tabs.innerHTML = '';
   els.hero.innerHTML = '';
   els.viewSwitch.innerHTML = '';
+  els.view.hidden = false;
   els.view.innerHTML = errorHtml(e);
 }
 
@@ -435,16 +443,26 @@ async function boot() {
   document.title = state.index.title;
 
   els.tabs.addEventListener('click', (e) => {
-    if (e.target.closest('[data-more]')) return document.getElementById('menuBtn').click();
     const b = e.target.closest('[data-sector]');
-    if (b && (b.dataset.sector !== state.sectorId || !state.sector)) {
+    if (!b || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    if (b.dataset.sector !== state.sectorId || !state.sector || state.companyId || state.caseId) {
       sheetPushed = false;
-      navigate({ sectorId: b.dataset.sector, ...(b.dataset.sector === 'aikatsu' ? { view: 'map' } : {}), companyId: null });
+      navigate({ sectorId: b.dataset.sector, ...(b.dataset.sector === 'aikatsu' ? { view: 'map' } : {}), companyId: null, caseId: null });
     }
   });
   els.viewSwitch.addEventListener('click', (e) => {
     const b = e.target.closest('[data-view]');
     if (b && b.dataset.view !== state.view) navigate({ view: b.dataset.view }, { replace: true });
+  });
+  els.viewSwitch.addEventListener('keydown', (e) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(e.key)) return;
+    const tabs = [...els.viewSwitch.children];
+    const i = tabs.indexOf(e.target);
+    if (i === -1) return;
+    const next = { ArrowLeft: (i + tabs.length - 1) % tabs.length, ArrowRight: (i + 1) % tabs.length, Home: 0, End: tabs.length - 1 }[e.key];
+    e.preventDefault();
+    tabs[next].click();
   });
   els.hero.addEventListener('click', (e) => {
     const b = e.target.closest('[data-set-region]');
@@ -460,7 +478,7 @@ async function boot() {
     getState: () => state,
     onSector: (id) => {
       sheetPushed = false;
-      navigate({ sectorId: id, ...(id === 'aikatsu' ? { view: 'map' } : {}), companyId: null });
+      navigate({ sectorId: id, ...(id === 'aikatsu' ? { view: 'map' } : {}), companyId: null, caseId: null });
     },
     onCompany: (sid, cid) => {
       sheetPushed = false;
@@ -470,8 +488,7 @@ async function boot() {
 
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (isDrawerOpen()) closeDrawer();
-    else if (state.companyId) closeCompany();
+    if (!isDrawerOpen() && state.companyId) closeCompany();
   });
 
   window.addEventListener('popstate', applyRoute);
